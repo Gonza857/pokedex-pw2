@@ -1,3 +1,24 @@
+<?php
+
+$es_error = "";
+
+
+    $correo = isset($_GET['correo']) ? $_GET['correo'] : null;
+    $contrasenia = isset($_GET['pass']) ? $_GET['pass'] : null;
+    $areParametersSetted = isset($_GET["correo"]) && isset($_GET["pass"]); // si estan en la URL
+
+    if(($correo == "" || $contrasenia == "") && $areParametersSetted){
+
+        $es_error = "Los datos no pueden estar vacios";
+
+    }
+
+
+
+
+?>
+
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,17 +37,22 @@
 <main>
 
     <div>
-        <form action="" method="get" enctype="" class="d-flex gap-2">
+        <form method="get" class="d-flex gap-2">
             <label for="correo">Correo electronico:</label>
             <input type="text" placeholder="Ingrese su correo electronico" id="correo" name="correo">
+
 
             <label for="pass">Contraseña:</label>
             <input type="password" placeholder="Ingrese su contraseña" id="pass" name="pass">
 
             <input type="submit" value="Ingresar" class="botoncito">
 
-        </form>
 
+
+        </form>
+        <h1>
+            <?php echo $es_error ?>
+        </h1>
     </div>
 
 
