@@ -31,7 +31,7 @@ $es_error = "";
 <body style="background-color: hotpink">
 
 <header>
-    <h1 style="color: blue">Árbol</h1>
+    <h1 style="color: pink">VIVA SOL ARIAS</h1>
 </header>
 
 <main>
