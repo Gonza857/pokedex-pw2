@@ -31,7 +31,7 @@ $es_error = "";
 <body style="background-color: hotpink">
 
 <header>
-    <h1 style="color: pink">Pokedex</h1>
+    <h1 style="color: blue">Pokedex</h1>
 </header>
 
 <main>
