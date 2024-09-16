@@ -9,11 +9,11 @@
 </head>
 <body>
 
-<h1>Pokedex</h1>
+<h1>PokeRegistro</h1>
 
 
 
-<form action="" method="get" enctype="" class="d-flex">
+<form action="" method="get" enctype="" class="d-flex gap-2">
 
     <label for="nombre">Nombre usuario:</label>
     <input type="text" placeholder="Ingrese su nombre de usuario" id="nombre" name="nombre">
@@ -27,7 +27,7 @@
     <label for="passR">Repetir contraseña:</label>
     <input type="password" placeholder="Ingrese su contraseña nuevamente" id="passR" name="passR">
 
-    <input type="submit" value="Ingresar">
+    <input type="submit" value="Ingresar" class >
 
 </form>
 
