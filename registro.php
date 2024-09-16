@@ -4,13 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registro Pokedex</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="registro.css">
 </head>
 <body>
 
 <h1>Pokedex</h1>
 
 
-<form action="" method="get" enctype="">
+
+<form action="" method="get" enctype="" class="d-flex">
 
     <label for="nombre">Nombre usuario:</label>
     <input type="text" placeholder="Ingrese su nombre de usuario" id="nombre" name="nombre">
