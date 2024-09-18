@@ -76,5 +76,5 @@ foreach ($pokemones as $pokemon) {
 
 
 ?>
-=======
-</html>
+
+
