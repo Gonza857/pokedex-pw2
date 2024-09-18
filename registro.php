@@ -1,34 +1,46 @@
+<?php
+$rutaCss = "stylesheets/registro.css";
+$rutaIndex= "index.php";
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Registro Pokedex</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+   <?php echo '<link rel="stylesheet" href="'.$rutaCss.'">' ?>
 </head>
 <body>
 
-<h1>Pokedex</h1>
+<header>
+<h1>PokeRegistro</h1>
+</header>
 
+<main>
+<div class="formulario">
+    <?php echo '<form action="'.$rutaIndex.'" method="post" class="d-flex gap-2">'; ?>
 
-<form action="" method="get" enctype="">
+        <label for="nombre">Nombre usuario:</label>
+        <input type="text" placeholder="Ingrese su nombre de usuario" id="nombre" name="nombre" required>
 
-    <label for="nombre">Nombre usuario:</label>
-    <input type="text" placeholder="Ingrese su nombre de usuario" id="nombre" name="nombre">
+        <label for="correo">Correo electronico:</label>
+        <input type="text" placeholder="Ingrese su correo electronico" id="correo" name="correo" required>
 
-    <label for="correo">Correo electronico:</label>
-    <input type="text" placeholder="Ingrese su correo electronico" id="correo" name="correo">
+        <label for="pass">Contraseña:</label>
+        <input type="password" placeholder="Ingrese su contraseña" id="pass" name="pass" required>
 
-    <label for="pass">Contraseña:</label>
-    <input type="password" placeholder="Ingrese su contraseña" id="pass" name="pass">
+        <label for="passR">Repetir contraseña:</label>
+        <input type="password" placeholder="Ingrese su contraseña nuevamente" id="passR" name="passR" required>
 
-    <label for="passR">Repetir contraseña:</label>
-    <input type="password" placeholder="Ingrese su contraseña nuevamente" id="passR" name="passR">
+    <button type="submit" class="botoncito">Ingresar</button>
 
-    <input type="submit" value="Ingresar">
+    </form>
 
-</form>
-
-
+</div>
+</main>
 
 </body>
 </html>
@@ -44,4 +56,3 @@
 
 
 
-<?php

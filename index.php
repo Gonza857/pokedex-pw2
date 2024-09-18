@@ -51,7 +51,7 @@ $pokemones = [
 <body style="background-color: lightpink">
 <header>
     <img src="img/image.png">
-    <h1>Pokedex</h1>
+    <h1>cualquiercosa</h1>
     <button>Iniciar sesion</button>
 
 </header>
@@ -76,5 +76,5 @@ foreach ($pokemones as $pokemon) {
 
 
 ?>
-=======
-</html>
+
+
