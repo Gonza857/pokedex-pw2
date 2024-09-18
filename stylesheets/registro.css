@@ -50,5 +50,13 @@ input{
     width: 200px;
     background-color: #ff7e5f;
     align-self: center;
+    border: 1px solid #ff7e5f;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease, border 0.3s ease;
 }
 
+.botoncito:hover {
+    background-color: rgba(255, 79, 47, 0.8);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    border: 1px solid grey;
+}
