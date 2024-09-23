@@ -19,7 +19,7 @@ if (file_exists($pokemons_file)) {
 <ul>
     <?php foreach ($pokemons as $pokemon): ?>
         <li>
-            <a href="stylesheets/detalle.php?id=<?php echo $pokemon['id']; ?>">
+            <a href="detalle.php?id=<?php echo $pokemon['id']; ?>">
                 <?php echo $pokemon['name']; ?>
             </a>
         </li>

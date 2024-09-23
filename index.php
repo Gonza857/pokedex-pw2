@@ -52,29 +52,13 @@ if ($quiereBuscar) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <?php include ("./components/bootstrap-and-general-styles.html")?>
+    <!--  Estilos del index  -->
     <link rel="stylesheet" href="stylesheets/index.css">
     <title>Pokedex</title>
 </head>
-<body style="background-color: #2f2f2f">
-<header class="col-12">
-    <div class="col-10 mx-auto d-flex flex-wrap justify-content-between align-items-center">
-        <div class="h-75 rounded-circle overflow-hidden">
-            <img src="img/image.png" alt="Logo" class="h-100">
-        </div>
-        <h1 class="text-white">Pokedex</h1>
-        <div class="d-flex gap-2 flex-wrap">
-            <a href="login.php">
-                <button>Iniciar sesion</button>
-            </a>
-            <a href="registro.php">
-                <button>Registrarse</button>
-            </a>
-        </div>
-
-    </div>
-</header>
+<body>
+<?php require ("./components/header.php")?>
 <main class="col-12 pb-5">
     <div class="col-5 mx-auto pt-2">
         <form class="col-12 d-flex flex-wrap">
@@ -127,10 +111,7 @@ if ($quiereBuscar) {
                             <p class="m-0 p-0 fs-6"><?= $pokemon["nombre"] ?></p>
                             <a href="detalle.php?id=<?= $pokemon["codigo"] ?>">
                                 <button>Ver detalles</button>
-                            </a>                            <!--  <p class=" m-0 p-0 fs-6">
-                            Descripción: -->
-                            <?php //= $pokemon["descripcion"] ?>
-                            <!--</p>-->
+                            </a>
                         </div>
                     </div>
                 <?php endforeach; ?>
@@ -138,7 +119,7 @@ if ($quiereBuscar) {
         </div>
     </div>
 </main>
-<?php include_once ("./components/footer.php")?>
+<?php include_once("./components/footer.php") ?>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"

@@ -1,13 +1,4 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-}
 
-main {
-    min-height: calc(100vh - 100px);
-}
 
 form {
     padding: 10px;
@@ -18,18 +9,6 @@ h1 {
 }
 
 
-header {
-    background-color: #1a1a1a;
-    border-bottom: 1px solid #2a5d84;
-}
-
-header > div {
-    height: 100px;
-}
-
-header > div {
-    width: fit-content;
-}
 
 button {
     border: none;
@@ -128,15 +107,3 @@ button:hover {
     color: deeppink;
 }
 
-/* BOX HELPERS */
-.bor1 {
-    border: 5px solid red;
-}
-
-.bor2 {
-    border: 5px solid yellow;
-}
-
-.bor3 {
-    border: 5px solid blue;
-}
