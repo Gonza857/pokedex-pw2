@@ -16,10 +16,21 @@ header {
 
 header > div {
     height: 100px;
+    width: fit-content;
 }
 
-header > div {
+.headerImageContainer {
     width: fit-content;
+    height: 100%;
+    object-fit: contain;
+}
+
+.headerImageContainer > img {
+    height: 100%;
+}
+
+.box2{
+    height: 100%;
 }
 
 main {
