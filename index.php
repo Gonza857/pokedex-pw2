@@ -10,7 +10,6 @@ $query = mysqli_query($conexion, "SELECT * FROM pokemon");
 
 $pokemons = [];
 
-$quantity = mysqli_num_rows($query);
 
 while ($fila = mysqli_fetch_assoc($query)) {
     $poke = [
