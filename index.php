@@ -149,7 +149,7 @@ $acertados = 0;
 $quiereBuscar = isset($_GET["param"]) ? $_GET["param"] : false;
 if ($quiereBuscar) {
     $resultado = "BUSCANDO";
-    foreach ($pokemones as $poke) {
+    foreach ($pokemones as $poke) { // hola, ola -> true
         if (str_contains(strtolower($poke["nombre"]), strtolower($quiereBuscar)) !== false) {
             $miBusquedad[] = $poke;
             $acertados++;
@@ -239,7 +239,7 @@ if ($quiereBuscar) {
                         <div class="d-flex flex-column align-items-center justify-content-center gap-1 pokemonTextContainer p-1">
                             <p class="m-0 p-0 fw-bold"><?= $pokemon["codigo"] ?></p>
                             <p class="m-0 p-0 fs-6"><?= $pokemon["nombre"] ?></p>
-                            <a href="detalle.php?id=<?= $pokemon["codigo"] ?>">
+                            <a href="stylesheets/detalle.php?id=<?= $pokemon[">
                                 <button>Ver detalles</button>
                             </a>                            <!--  <p class=" m-0 p-0 fs-6">
                             Descripción: -->
