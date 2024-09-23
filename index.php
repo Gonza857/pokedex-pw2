@@ -4,7 +4,7 @@ $conexion = mysqli_connect(
     "localhost",
     "root",
     "",
-    "pokedex") or die ("error en conexion");
+    "pokedexphp") or die ("error en conexion");
 
 $query = mysqli_query($conexion, "SELECT * FROM pokemon");
 
@@ -59,7 +59,7 @@ if ($quiereBuscar) {
 <body>
 <?php require ("./components/header.php")?>
 <main class="col-12 pb-5">
-    <div class="col-5 mx-auto pt-2">
+    <div class="col-12 col-md-5 mx-auto pt-2">
         <form class="col-12 d-flex flex-wrap">
             <a href="index.php" class="styledCleanButton col-2">
                 Limpiar
@@ -69,9 +69,7 @@ if ($quiereBuscar) {
             <input class="col-2 styledSearchButton" type="submit" value="Buscar">
         </form>
     </div>
-
-
-    <!--  TEXTO RESULTADOS         -->
+    <!--  TEXTO RESULTADOS  -->
     <?php if ($quiereBuscar !== false): ?>
         <div class="mx-auto col-12 text-center">
             <p class="text-white m-0 p-0"> Se encontraron <?= count($miBusquedad) ?> resultados coincidentes</p>
