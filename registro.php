@@ -1,6 +1,10 @@
 <?php
+session_start();
 $rutaCss = "stylesheets/registro.css";
-$rutaIndex= "index.php";
+$rutaAEnviar= "procesar-registro.php";
+$error = isset($_SESSION["error"]) ? $_SESSION["error"] : null;
+unset($_SESSION["error"]);
+
 ?>
 
 <!doctype html>
@@ -21,10 +25,10 @@ $rutaIndex= "index.php";
 
 <main>
 <div class="formulario">
-    <?php echo '<form action="'.$rutaIndex.'" method="post" class="d-flex gap-2">'; ?>
+    <?php echo '<form action="'.$rutaAEnviar.'" method="post" class="d-flex gap-2">'; ?>
 
-        <label for="nombre">Nombre usuario:</label>
-        <input type="text" placeholder="Ingrese su nombre de usuario" id="nombre" name="nombre" required>
+        <label for="username">Nombre usuario:</label>
+        <input type="text" placeholder="Ingrese su nombre de usuario" id="username" name="username" required>
 
         <label for="correo">Correo electronico:</label>
         <input type="text" placeholder="Ingrese su correo electronico" id="correo" name="correo" required>
@@ -36,7 +40,7 @@ $rutaIndex= "index.php";
         <input type="password" placeholder="Ingrese su contraseña nuevamente" id="passR" name="passR" required>
 
     <button type="submit" class="botoncito">Ingresar</button>
-
+    <?php echo $error ? "<strong>$error</strong>" : "" ?>
     </form>
 
 </div>

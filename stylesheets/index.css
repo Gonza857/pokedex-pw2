@@ -1,13 +1,4 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-}
 
-main {
-    min-height: calc(100vh - 100px);
-}
 
 form {
     padding: 10px;
@@ -18,18 +9,6 @@ h1 {
 }
 
 
-header {
-    background-color: #1a1a1a;
-    border-bottom: 1px solid #2a5d84;
-}
-
-header > div {
-    height: 100px;
-}
-
-header > div {
-    width: fit-content;
-}
 
 button {
     border: none;
@@ -97,7 +76,7 @@ button:hover {
 
 .pokemonesContainer {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
     gap: 0.5rem;
 }
@@ -128,15 +107,27 @@ button:hover {
     color: deeppink;
 }
 
-/* BOX HELPERS */
-.bor1 {
-    border: 5px solid red;
+@media screen and (min-width: 576px){
+    .pokemonesContainer {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
 
-.bor2 {
-    border: 5px solid yellow;
+@media screen and (min-width: 768px){
+    .pokemonesContainer {
+        grid-template-columns: repeat(4, 1fr);
+    }
 }
 
-.bor3 {
-    border: 5px solid blue;
+@media screen and (min-width: 992px){
+    .pokemonesContainer {
+        grid-template-columns: repeat(5, 1fr);
+    }
 }
+
+@media screen and (min-width: 1200px){
+    .pokemonesContainer {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
