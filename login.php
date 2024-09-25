@@ -1,20 +1,8 @@
 <?php
-
-$es_error = "";
-
-
-    $correo = isset($_GET['correo']) ? $_GET['correo'] : null;
-    $contrasenia = isset($_GET['pass']) ? $_GET['pass'] : null;
-    $areParametersSetted = isset($_GET["correo"]) && isset($_GET["pass"]); // si estan en la URL
-
-    if(($correo == "" || $contrasenia == "") && $areParametersSetted){
-
-        $es_error = "Los datos no pueden estar vacios";
-
-    }
-
-
-
+session_start();
+$rutaAEnviar = "procesar-login.php";
+$error = isset($_SESSION['error']) ? $_SESSION['error'] : null;
+unset($_SESSION['error']);
 
 ?>
 
@@ -50,23 +38,19 @@ $es_error = "";
     <div class="contenedor p-2 py-3 mt-4">
         <h1 class="mb-2 mt-3 ">Poke - Login</h1>
         <img src="https://imgs.search.brave.com/VF5mYvpWpZ3w01JGpXbNDeoQIzISYIa2HLfOIPCukwk/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9hc3Nl/dHMuc3RpY2twbmcu/Y29tL2ltYWdlcy81/ODBiNTdmY2Q5OTk2/ZTI0YmM0M2MzMWEu/cG5n" class="imagen">
-        <form method="get" class="d-flex gap-2">
-
+        <?php echo '<form action="'.$rutaAEnviar.'" method="post" class="d-flex gap-2">'; ?>
                 <label for="correo">Correo electronico:</label>
                 <input type="text" placeholder="Ingrese su correo electronico..." id="correo" name="correo">
-
 
                 <label for="pass">Contraseña:</label>
                 <input type="password" placeholder="Ingrese su contraseña..." id="pass" name="pass">
 
-
             <input type="submit" value="Ingresar" class="botoncito">
-
-
 
         </form>
         <h1>
-            <?php echo $es_error ?>
+            <?php echo $error ? "<strong>$error</strong>" : "" ?>
+
         </h1>
     </div>
 
