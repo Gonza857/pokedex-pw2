@@ -6,42 +6,42 @@ $pokemones = [
         "nombre" => "Bulbasaur",
         "descripcion" => "Un Pokémon planta y veneno. Es conocido por la semilla en su espalda.",
         "tipos" => ["Planta", "Veneno"],
-        "<img src='img/image.png'>"
+        "<img src='img/assets/image.png'>"
     ],
     [
         "codigo" => "004",
         "nombre" => "Charmander",
         "descripcion" => "Un Pokémon de fuego. Su cola siempre tiene una llama encendida.",
         "tipos" => ["Fuego"],
-        "<img src='img/image.png'>"
+        "<img src='img/assets/image.png'>"
     ],
     [
         "codigo" => "007",
         "nombre" => "Squirtle",
         "descripcion" => "Un Pokémon de agua. Usa su caparazón para protección.",
         "tipos" => ["Agua"],
-        "<img src='img/image.png'>"
+        "<img src='img/assets/image.png'>"
     ],
     [
         "codigo" => "025",
         "nombre" => "Pikachu",
         "descripcion" => "El Pokémon eléctrico más conocido, capaz de generar potentes descargas.",
         "tipos" => ["Eléctrico"],
-        "<img src='img/image.png'>"
+        "<img src='img/assets/image.png'>"
     ],
     [
         "codigo" => "150",
         "nombre" => "Mewtwo",
         "descripcion" => "Un Pokémon psíquico, creado mediante ingeniería genética.",
         "tipos" => ["Psíquico"],
-        "<img src='img/image.png'>"
+        "<img src='img/assets/image.png'>"
     ],
     [
         "codigo" => "777",
         "nombre" => "Jimena",
         "descripcion" => "Harta.",
         "tipos" => ["Psíquico"],
-        "<img src='img/image.png'>"
+        "<img src='img/assets/image.png'>"
     ]
 ];
 $error = "";
