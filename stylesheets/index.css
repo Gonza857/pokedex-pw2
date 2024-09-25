@@ -76,7 +76,7 @@ button:hover {
 
 .pokemonesContainer {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     grid-template-rows: auto;
     gap: 0.5rem;
 }
@@ -105,5 +105,29 @@ button:hover {
 
 .rosita {
     color: deeppink;
+}
+
+@media screen and (min-width: 576px){
+    .pokemonesContainer {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (min-width: 768px){
+    .pokemonesContainer {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (min-width: 992px){
+    .pokemonesContainer {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media screen and (min-width: 1200px){
+    .pokemonesContainer {
+        grid-template-columns: repeat(6, 1fr);
+    }
 }
 
