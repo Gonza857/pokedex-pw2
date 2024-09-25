@@ -4,7 +4,7 @@ $conexion = mysqli_connect(
     "localhost",
     "root",
     "",
-    "pokedexphp") or die ("error en conexion");
+    "pokedex") or die ("error en conexion");
 
 $query = mysqli_query($conexion, "SELECT * FROM pokemon");
 
@@ -47,7 +47,7 @@ if ($quiereBuscar) {
 ?>
 
 <!doctype html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,7 +72,11 @@ if ($quiereBuscar) {
     <!--  TEXTO RESULTADOS  -->
     <?php if ($quiereBuscar !== false): ?>
         <div class="mx-auto col-12 text-center">
-            <p class="text-white m-0 p-0"> Se encontraron <?= count($miBusquedad) ?> resultados coincidentes</p>
+            <?php if (count($miBusquedad) > 0): ?>
+                <p class="text-white m-0 p-0"> Se encontraron <?= count($miBusquedad) ?> resultados coincidentes</p>
+            <?php else: ?>
+                <p class="text-white m-0 p-0"> No se encontraron pokemones con ese resultado. Aquí están todos los disponibles:</p>
+            <?php endif; ?>
         </div>
     <?php endif; ?>
     <!-- WRAPPER -->
@@ -80,7 +84,7 @@ if ($quiereBuscar) {
         <!-- nombre, codigo, descripcion -->
         <div class="pokemonesContainer">
             <!-- MAP -->
-            <?php if ($quiereBuscar !== false): ?>
+            <?php if ($quiereBuscar !== false && count($miBusquedad) > 0): ?>
                 <?php foreach ($miBusquedad as $pokemon): ?>
                     <div class="bg-white p-2 pokemonCard">
                         <div class="pokemonImageContainer">
