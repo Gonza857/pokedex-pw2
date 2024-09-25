@@ -68,3 +68,28 @@ input{
     border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
+@media screen and (max-width: 768px) {
+    .contenedor {
+        width: 80%;
+        margin: 20px auto;
+
+    }
+
+    .imagen {
+        width: 150px;
+    }
+
+    .botoncito {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .contenedor {
+        width: 90%;
+    }
+
+    .imagen {
+        width: 120px;
+    }
+}
