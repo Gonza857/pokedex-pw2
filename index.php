@@ -9,18 +9,18 @@ $conexion = mysqli_connect(
 $query = mysqli_query($conexion, "SELECT * FROM pokemon");
 
 $pokemons = [];
-
-
+$carpetaImagenes = 'imagenes-pokemon/';
 while ($fila = mysqli_fetch_assoc($query)) {
     $poke = [
         "codigo" => $fila["CODIGO"],
         "nombre" => $fila["NOMBRE"],
         "descripcion" => $fila["DESCRIPCION"],
-        "tipos" => json_encode($fila["TIPO_POKEMON"]),
-        "imagen" => $fila["IMAGEN"],
+        "tipos" =>  json_encode($fila["TIPO_POKEMON"]),
+        "imagen" => $carpetaImagenes . $fila["IMAGEN"],
     ];
     $pokemons[]= $poke;
 }
+
 
 
 mysqli_close($conexion);
@@ -47,7 +47,7 @@ if ($quiereBuscar) {
 ?>
 
 <!doctype html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -72,11 +72,7 @@ if ($quiereBuscar) {
     <!--  TEXTO RESULTADOS  -->
     <?php if ($quiereBuscar !== false): ?>
         <div class="mx-auto col-12 text-center">
-            <?php if (count($miBusquedad) > 0): ?>
-                <p class="text-white m-0 p-0"> Se encontraron <?= count($miBusquedad) ?> resultados coincidentes</p>
-            <?php else: ?>
-                <p class="text-white m-0 p-0"> No se encontraron pokemones con ese resultado. Aquí están todos los disponibles:</p>
-            <?php endif; ?>
+            <p class="text-white m-0 p-0"> Se encontraron <?= count($miBusquedad) ?> resultados coincidentes</p>
         </div>
     <?php endif; ?>
     <!-- WRAPPER -->
@@ -84,7 +80,7 @@ if ($quiereBuscar) {
         <!-- nombre, codigo, descripcion -->
         <div class="pokemonesContainer">
             <!-- MAP -->
-            <?php if ($quiereBuscar !== false && count($miBusquedad) > 0): ?>
+            <?php if ($quiereBuscar !== false): ?>
                 <?php foreach ($miBusquedad as $pokemon): ?>
                     <div class="bg-white p-2 pokemonCard">
                         <div class="pokemonImageContainer">
