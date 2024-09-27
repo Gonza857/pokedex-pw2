@@ -9,8 +9,20 @@ $conexion = mysqli_connect(
 $existeBuscado = isset($_GET["id"]) ? $_GET["id"] : false;
 
 $query = mysqli_query($conexion, "SELECT * FROM pokemon WHERE ID_BASE = " . $existeBuscado);
+$query2 = mysqli_query($conexion, "SELECT * FROM TIPOS");
 
 $fila = mysqli_fetch_assoc($query);
+$tipos = mysqli_fetch_assoc($query2);
+$tiposArray = [];
+
+while ($tipos = mysqli_fetch_assoc($query2)) {
+    $tipo = [
+        "id" => $tipos["ID"],
+        "nombre" => $tipos["NOMBRE"],
+        "imagen" => $tipos["imagen"],
+    ];
+    $tiposArray[] = $tipo;
+}
 
 $poke = [
     "id_base" => $fila["ID_BASE"],
@@ -18,21 +30,8 @@ $poke = [
     "nombre" => $fila["NOMBRE"],
     "descripcion" => $fila["DESCRIPCION"],
     "tipos" => json_encode($fila["TIPO_POKEMON"]),
-    "imagen" => $fila["IMAGEN"],
+    "imagen" => "./imagenes-pokemon/1.webp",
 ];
-
-$areAllParamettersSetted =
-    isset($_POST["codigo"])
-    && isset($_POST["nombre"])
-    && isset($_POST["descripcion"])
-    && isset($_POST["tipos"]);
-
-
-if ($areAllParamettersSetted) {
-    echo json_encode($_POST["tipos"]);
-}
-
-
 
 ?>
 
@@ -49,10 +48,11 @@ if ($areAllParamettersSetted) {
 </head>
 <body>
 <?php require("./components/header.php") ?>
-<main class="col-12 pt-4">
-    <h1 class="text-white"><?= $areAllParamettersSetted ? "todo puesto pa" : "sol :D"?></h1>
+<main class="col-12">
     <div class="mx-auto">
-        <form method="post" action="modificar.php?id=4" enctype="multipart/form-data" class="d-flex flex-column gap-2 col-4 mx-auto border rounded-4 p-4">
+        <form method="post" action="modificadoCorrectamente.php?id=<?= $poke["id_base"] ?>"
+              enctype="multipart/form-data"
+              class="mt-3 d-flex flex-column gap-2 col-4 mx-auto border rounded-4 p-4">
             <h3 class="text-center text-white">Modificar Pokemon: <?= $poke["nombre"] ?></h3>
             <div class="d-flex flex-column gap-1 text-white">
                 <label for="codigo">Código</label>
@@ -68,14 +68,18 @@ if ($areAllParamettersSetted) {
             </div>
             <div class="d-flex flex-column gap-1 text-white">
                 <label for="tipos">Tipos</label>
-                <select name="tipos[]" multiple class="p-2">
-                    <option value="Willyrex">Willyrex</option>
-                    <option value="Vegetta">Vegetta</option>
-                    <option value="Fargan">Fargan</option>
-                    <option value="FaltaStacks">FaltaStacks</option>
+                <select name="tipos" class="p-2">
+                    <?php foreach ($tiposArray as $t): ?>
+                        <option value="<?= $t["id"] ?>"><?= $t["nombre"] ?></option>
+                    <?php endforeach; ?>
                 </select>
             </div>
-
+            <div class="d-flex flex-column gap-2 text-white contenedorImagen">
+                <img src="<?= $poke["imagen"] ?>" class="imagenPokemon"/>
+                <input type="hidden" name="imagen" value="<?= $poke["imagen"] ?>"/>
+            </div>
+            <p class="text-white"><?php var_dump($poke["id_base"]) ?></p>
+            <input type="hidden" name="id_base" value="<?= $poke["id_base"] ?>"/>
             <button type="submit">Actualizar</button>
         </form>
     </div>
