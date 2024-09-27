@@ -22,6 +22,7 @@ while ($fila = mysqli_fetch_assoc($query)) {
     $pokemons[] = $poke;
 }
 
+echo var_dump($pokemons);
 
 
 mysqli_close($conexion);
