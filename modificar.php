@@ -11,7 +11,7 @@ $conexion = mysqli_connect(
     "localhost",
     "root",
     "",
-    "pokedexphp") or die ("error en conexion");
+    "pokedex") or die ("error en conexion");
 
 $existeBuscado = isset($_GET["id"]) ? $_GET["id"] : false;
 

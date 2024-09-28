@@ -11,7 +11,7 @@ $conexion = mysqli_connect(
     "localhost",
     "root",
     "",
-    "pokedexphp") or die ("error en conexion");
+    "pokedex") or die ("error en conexion");
 
 $query = mysqli_query($conexion, "SELECT * FROM pokemon");
 

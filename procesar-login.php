@@ -30,31 +30,29 @@ if ($stmt->rowCount() == 0) {
     redirigirConError("Correo inexistente. ");
 }
 
-//redirigirConError($pass);
+
 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 if ($usuario['password'] != $pass) {
-    redirigirConError('pass distintas');
-    // redirigirConError("Correo electrónico o contraseña incorrectos.");
-} else {
-    redirigirConError('pass iguales');
+    redirigirConError("Correo electrónico o contraseña incorrectos.");
 }
 
-$_SESSION['usuario'] = $usuario;
-try {
-    setearToken($conn, $usuario);
-} catch (PDOException $e) {
-    redirigirConError('Error al iniciar sesión. Ingrese nuevamente sus credenciales');
-}
+    $_SESSION['usuario'] = $usuario;
+    try {
+        setearToken($conn, $usuario);
+    } catch (PDOException $e) {
+        redirigirConError('Error al iniciar sesión. Ingrese nuevamente sus credenciales');
+    }
 
-header("location: index.php");
-exit();
+    header("location: index.php");
+    exit();
 
 
-function setearToken($conn, $usuario){
-    $token = bin2hex(random_bytes(16));
-    $sql = "UPDATE usuario SET token = ? WHERE id = ?";
-    $stmt = $conn->prepare($sql);
-    $stmt->execute([$token, $usuario['id']]);
-}
+    function setearToken($conn, $usuario)
+    {
+        $token = bin2hex(random_bytes(16));
+        $sql = "UPDATE usuario SET token = ? WHERE id_usuario = ?";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute([$token, $usuario['id_usuario']]);
+    }
 
 ?>
