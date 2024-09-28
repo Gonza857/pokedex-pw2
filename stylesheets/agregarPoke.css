@@ -1,0 +1,104 @@
+body{
+    background: linear-gradient(to right, #001a66,#004d33);
+    color: white;
+}
+
+.volver{
+    width: 30%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+button{
+    border: none;
+    padding: 10px;
+    border-radius: 20px;
+}
+
+a{
+    color: white;
+    text-decoration: none;
+}
+
+a:hover{
+    text-decoration: underline;
+}
+
+
+
+.contFormulario{
+    width: 30%;
+    margin: auto;
+    background-color: #00000033;
+    border-radius: 20px;
+    padding: 50px;
+}
+
+
+
+.botoncito{
+    margin: auto;
+    width: 50%;
+    color: white;
+    background-color: #00000088;
+    transition: all .3s;
+}
+
+.botoncito:hover{
+    background-color: black;
+    box-shadow: inset -1px 0px 95px -21px rgba(0,77,51,1);
+}
+
+input{
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    padding-left: 10px;
+    background-color: #00000044;
+    margin-bottom: 20px;
+    color: white;
+}
+
+textarea{
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    padding-left: 10px;
+    background-color: #00000044;
+    margin-bottom: 20px;
+    color: white;
+}
+
+select{
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    padding-left: 10px;
+    background-color: #00000044;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.imagen{
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    padding-left: 10px;
+    background-color: #00000044;
+    margin-bottom: 20px;
+    color: white;
+}
+
+
+h1{
+    text-align: center;
+}
+
+form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+

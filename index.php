@@ -1,27 +1,28 @@
 <?php
 
+session_start();
+
 $conexion = mysqli_connect(
     "localhost",
     "root",
     "",
-    "pokedexphp") or die ("error en conexion");
+    "pokedex") or die ("error en conexion");
 
 $query = mysqli_query($conexion, "SELECT * FROM pokemon");
 
 $pokemons = [];
-
-
+$carpetaImagenes = 'imagenes-pokemon/';
 while ($fila = mysqli_fetch_assoc($query)) {
     $poke = [
+        "id_base" => $fila["ID_BASE"],
         "codigo" => $fila["CODIGO"],
         "nombre" => $fila["NOMBRE"],
         "descripcion" => $fila["DESCRIPCION"],
-        "tipos" => json_encode($fila["TIPO_POKEMON"]),
-        "imagen" => $fila["IMAGEN"],
+        "tipos" =>  json_encode($fila["TIPO_POKEMON"]),
+        "imagen" => $carpetaImagenes . $fila["IMAGEN"],
     ];
-    $pokemons[]= $poke;
+    $pokemons[] = $poke;
 }
-
 
 mysqli_close($conexion);
 
@@ -30,6 +31,7 @@ $miBusquedad = [];
 $acertados = 0;
 
 $quiereBuscar = isset($_GET["param"]) ? $_GET["param"] : false;
+
 if ($quiereBuscar) {
     $resultado = "BUSCANDO";
     foreach ($pokemons as $poke) {
@@ -39,10 +41,9 @@ if ($quiereBuscar) {
         }
     }
     $resultado = "Resultados encontrados: " . count($miBusquedad);
-} else {
-    $resultado = "NO BUSCANDO";
 }
 
+$logueado = (isset($_SESSION["usuario"]) && isset($_SESSION["correo"])) ? true : false;
 
 ?>
 
@@ -51,13 +52,13 @@ if ($quiereBuscar) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php require ("./components/bootstrap-and-general-styles.html")?>
+    <?php require("./components/bootstrap-and-general-styles.html") ?>
     <!--  Estilos del index  -->
     <link rel="stylesheet" href="stylesheets/index.css">
     <title>Pokedex</title>
 </head>
 <body>
-<?php require ("./components/header.php")?>
+<?php require("./components/header.php") ?>
 <main class="col-12 pb-5">
     <div class="col-12 col-md-5 mx-auto pt-2">
         <form class="col-12 d-flex flex-wrap">
@@ -70,7 +71,7 @@ if ($quiereBuscar) {
         </form>
     </div>
     <!--  TEXTO RESULTADOS  -->
-    <?php if ($quiereBuscar !== false): ?>
+    <?php if ($quiereBuscar !== false && $miBusquedad == 0): ?>
         <div class="mx-auto col-12 text-center">
             <p class="text-white m-0 p-0"> Se encontraron <?= count($miBusquedad) ?> resultados coincidentes</p>
         </div>
@@ -89,7 +90,9 @@ if ($quiereBuscar) {
                         <div class="d-flex flex-column align-items-center justify-content-center gap-1 pokemonTextContainer p-1">
                             <p class="m-0 p-0 fw-bold"><?= $pokemon["codigo"] ?></p>
                             <p class="m-0 p-0 fs-6"><?= $pokemon["nombre"] ?></p>
-                            <button>Ver detalles</button>
+                            <a href="detalle.php?id=<?= $pokemon["id_base"] ?>">
+                                <button>Ver detalles</button>
+                            </a>
                             <!--  <p class="m-0 p-0 fs-6">
                             Descripción: -->
                             <?php //= $pokemon["descripcion"] ?>
@@ -106,7 +109,7 @@ if ($quiereBuscar) {
                         <div class="d-flex flex-column align-items-center justify-content-center gap-1 pokemonTextContainer p-1">
                             <p class="m-0 p-0 fw-bold"><?= $pokemon["codigo"] ?></p>
                             <p class="m-0 p-0 fs-6"><?= $pokemon["nombre"] ?></p>
-                            <a href="detalle.php?id=<?= $pokemon["codigo"] ?>">
+                            <a href="detalle.php?id=<?= $pokemon["id_base"] ?>">
                                 <button>Ver detalles</button>
                             </a>
                         </div>

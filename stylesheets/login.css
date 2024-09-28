@@ -1,6 +1,6 @@
 body{
     background: linear-gradient(to right, #001a66,#004d33);
-    color: white;
+    color: #fff;
 }
 
 .imagen{
@@ -34,27 +34,9 @@ label{
     padding: 0;
 }
 
-input{
-    padding: 5px;
-    border: none;
-    border-radius: 10px;
-    padding-left: 10px;
-    background-color: #00000044;
-    margin-bottom: 20px;
-}
 
-.botoncito{
-    margin: auto;
-    width: 50%;
-    color: white;
-    background-color: #00000088;
-    transition: all .3s;
-}
 
-.botoncito:hover{
-    background-color: black;
-    box-shadow: inset -1px 0px 95px -21px rgba(0,77,51,1);
-}
+
 
 .contenedor{
     width: 30%;
@@ -68,3 +50,45 @@ input{
     border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
+.botoncito{
+    margin: auto;
+    width: 50%;
+    color: #fff;
+    background-color: #00000088;
+    transition: all .3s;
+}
+.botoncito:hover{
+    background-color: black;
+    box-shadow: inset -1px 0px 95px -21px rgba(0,77,51,1);
+}
+
+input{
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #00000044;
+    margin-bottom: 20px;
+    color: #fff;
+    outline: none;
+}
+
+
+@media screen and (max-width: 768px) {
+    .contenedor {
+        width: 80%;
+        margin: 20px auto;
+    }
+    .imagen {
+        width: 150px;
+    }
+    .botoncito {
+        width: 70%;
+    }
+}
+@media screen and (max-width: 480px) {
+    .contenedor {
+        width: 90%;
+    }
+    .imagen {
+        width: 120px;
+    }
+}
