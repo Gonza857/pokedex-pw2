@@ -23,6 +23,9 @@ $logueado = (isset($_SESSION["usuario"]) && isset($_SESSION["correo"])) ? true :
                 <a href="/pokedex-pw2/login.php">
                     <button>Iniciar sesion</button>
                 </a>
+                <a href="/pokedex-pw2/registro.php">
+                    <button>Registrarse</button>
+                </a>
             <?php endif; ?>
         </div>
     </div>

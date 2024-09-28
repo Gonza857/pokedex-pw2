@@ -43,10 +43,9 @@ if($stmt->rowCount() > 0){
     redirigirConError("Ese correo ya se encuentra registrado. Reintente con otro.");
 }
 
-$passHash = password_hash($pass, PASSWORD_DEFAULT);
-$stmt = $conn->prepare("INSERT INTO usuario (usuario, password, correo) VALUES (:username, :pass, :correo)");
+$stmt = $conn->prepare("INSERT INTO usuario (username, password, correo) VALUES (:username, :pass, :correo)");
 $stmt->bindParam(":username", $username);
-$stmt->bindParam(":pass", $passHash);
+$stmt->bindParam(":pass", $pass);
 $stmt->bindParam(":correo", $correo);
 
 if($stmt->execute()){
