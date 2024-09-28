@@ -1,6 +1,6 @@
 <?php
 
-$logueado = (isset($_SESSION["usuario"]) && isset($_SESSION["correo"])) ? true : false;
+$logueado = isset($_SESSION["token"]);
 
 ?>
 

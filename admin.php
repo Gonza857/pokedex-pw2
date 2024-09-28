@@ -1,40 +1,23 @@
 <?php
-
 session_start();
-$logueado = (isset($_SESSION["usuario"]) && isset($_SESSION["correo"])) ? true : false;
+require_once("./clases/App.php");
+$app = new App();
+$resultados = $app->getPokemones();
+$logueado = isset($_SESSION["token"]);
+$mensaje = "";
+
 if (!$logueado) {
     header('Location: login.php');
     exit();
 }
 
-$conexion = mysqli_connect(
-    "localhost",
-    "root",
-    "",
-    "pokedex") or die ("error en conexion");
+$pokemones = [];
 
-$query = mysqli_query($conexion, "SELECT * FROM pokemon");
-
-$pokemons = [];
-
-$carpeta = "imagenes-pokemon/";
-
-while ($fila = mysqli_fetch_assoc($query)) {
-    $poke = [
-        "id_base" => $fila["ID_BASE"],
-        "codigo" => $fila["CODIGO"],
-        "nombre" => $fila["NOMBRE"],
-        "descripcion" => $fila["DESCRIPCION"],
-        "tipos" => json_encode($fila["TIPO_POKEMON"]),
-        "imagen" => $carpeta . $fila["IMAGEN"],
-    ];
-    $pokemons[] = $poke;
+if (count($resultados) == 0) {
+    $mensaje = "No se han encontrado registros";
+} else {
+    $pokemones = $resultados;
 }
-
-
-mysqli_close($conexion);
-
-// TODO: renderizar tipo
 
 $trashIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                                      class="bi bi-trash" viewBox="0 0 16 16">
@@ -61,7 +44,9 @@ $pencilIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fi
 <?php require("./components/header.php") ?>
 <main class="col-12">
     <div class="col-12 d-flex justify-content-center align-items-center py-4">
-        <a href="agregarPoke.php"><button>Agregar Pokemon</button></a>
+        <a href="agregarPoke.php">
+            <button>Agregar Pokemon</button>
+        </a>
     </div>
     <div class="col-6 mx-auto">
         <table class="table table-striped table-bordered table-hover">
@@ -75,7 +60,7 @@ $pencilIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fi
             </tr>
             </thead>
             <tbody>
-            <?php foreach ($pokemons as $pokemon): ?>
+            <?php foreach ($pokemones as $pokemon): ?>
                 <tr>
                     <td><?= $pokemon['codigo'] ?></td>
                     <td><?= $pokemon['nombre'] ?></td>

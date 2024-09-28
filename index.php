@@ -1,40 +1,27 @@
 <?php
 
+require_once "./clases/App.php";
 session_start();
+$app = new App();
+$resultados = $app->getPokemones();
 
-$conexion = mysqli_connect(
-    "localhost",
-    "root",
-    "",
-    "pokedex") or die ("error en conexion");
+$pokemones = [];
 
-$query = mysqli_query($conexion, "SELECT * FROM pokemon");
-
-$pokemons = [];
-$carpetaImagenes = 'imagenes-pokemon/';
-while ($fila = mysqli_fetch_assoc($query)) {
-    $poke = [
-        "id_base" => $fila["ID_BASE"],
-        "codigo" => $fila["CODIGO"],
-        "nombre" => $fila["NOMBRE"],
-        "descripcion" => $fila["DESCRIPCION"],
-        "tipos" =>  json_encode($fila["TIPO_POKEMON"]),
-        "imagen" => $carpetaImagenes . $fila["IMAGEN"],
-    ];
-    $pokemons[] = $poke;
+if (count($resultados) == 0) {
+    $mensaje = "No se han encontrado registros";
+} else {
+    $pokemones = $resultados;
 }
-
-mysqli_close($conexion);
 
 $resultado = "";
 $miBusquedad = [];
 $acertados = 0;
 
-$quiereBuscar = isset($_GET["param"]) ? $_GET["param"] : false;
+$quiereBuscar = $_GET["param"] ?? false;
 
 if ($quiereBuscar) {
     $resultado = "BUSCANDO";
-    foreach ($pokemons as $poke) {
+    foreach ($pokemones as $poke) {
         if (str_contains(strtolower($poke["nombre"]), strtolower($quiereBuscar)) !== false) {
             $miBusquedad[] = $poke;
             $acertados++;
@@ -43,7 +30,7 @@ if ($quiereBuscar) {
     $resultado = "Resultados encontrados: " . count($miBusquedad);
 }
 
-$logueado = (isset($_SESSION["usuario"]) && isset($_SESSION["correo"])) ? true : false;
+$logueado = isset($_SESSION["usuario"]) && isset($_SESSION["correo"]);
 
 ?>
 
@@ -101,7 +88,7 @@ $logueado = (isset($_SESSION["usuario"]) && isset($_SESSION["correo"])) ? true :
                     </div>
                 <?php endforeach; ?>
             <?php else: ?>
-                <?php foreach ($pokemons as $pokemon): ?>
+                <?php foreach ($pokemones as $pokemon): ?>
                     <div class="bg-white p-2 pokemonCard">
                         <div class="pokemonImageContainer">
                             <img src="<?= $pokemon["imagen"] ?>" class="w-100"/>
