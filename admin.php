@@ -17,6 +17,7 @@ $query = mysqli_query($conexion, "SELECT * FROM pokemon");
 
 $pokemons = [];
 
+$carpeta = "imagenes-pokemon/";
 
 while ($fila = mysqli_fetch_assoc($query)) {
     $poke = [
@@ -25,7 +26,7 @@ while ($fila = mysqli_fetch_assoc($query)) {
         "nombre" => $fila["NOMBRE"],
         "descripcion" => $fila["DESCRIPCION"],
         "tipos" => json_encode($fila["TIPO_POKEMON"]),
-        "imagen" => $fila["IMAGEN"],
+        "imagen" => $carpeta . $fila["IMAGEN"],
     ];
     $pokemons[] = $poke;
 }
