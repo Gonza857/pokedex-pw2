@@ -60,7 +60,7 @@ $pencilIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fi
 <?php require("./components/header.php") ?>
 <main class="col-12">
     <div class="col-12 d-flex justify-content-center align-items-center py-4">
-        <button>Agregar Pokemon</button>
+        <a href="agregarPoke.php"><button>Agregar Pokemon</button></a>
     </div>
     <div class="col-6 mx-auto">
         <table class="table table-striped table-bordered table-hover">

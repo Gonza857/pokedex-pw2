@@ -1,79 +1,20 @@
-body{
-    background-color: blue;
-    font-family: Monospace;
-}
-
-h1{
-    margin: 20px;
-    text-align: center;
-    font-weight: 600;
-}
-
-.formulario{
-  display: flex;
-    justify-content: center;
-}
-
-form{
-    font-family: sans-serif;
-    margin: 1.5em;
-    width: 30%;
-    padding:40px;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    background-color: #ffffff33;
-    border-radius: 10px;
-}
-
-input::placeholder{
-    color: #00000055;
-}
-
-label{
-    align-self: flex-start;
-}
-
-
-input{
-    width: 350px;
-    border: none;
-    border-radius: 10px;
-    padding: 5px;
-    padding-left: 10px;
-    background-color: #ffffff44;
-    margin-bottom: 10px;
-}
-
-.botoncito{
-    margin-top:20px;
-    width: 200px;
-    background-color: #ff7e5f;
-    align-self: center;
-    border: 1px solid #ff7e5f;
-    border-radius: 10px;
-    transition: background-color 0.3s ease, transform 0.3s ease, border 0.3s ease;
-}
-
-.botoncito:hover {
-    background-color: rgba(255, 79, 47, 0.8);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-}
-
 body {
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
-    font-family: Monospace;
+    background: linear-gradient(to right, #001a66, #004d33); /* Ajusta el gradiente según tu preferencia */
+    font-family: Handjet;
 }
 
 h1 {
     margin: 20px;
     text-align: center;
     font-weight: 600;
+    color: #f6f6f6;
+    border: #1a1a1a;
 }
 
 .formulario {
     display: flex;
     justify-content: center;
+    font-family: Playfair Display;
 }
 
 form {
@@ -109,18 +50,17 @@ input {
 .botoncito {
     margin-top: 20px;
     width: 200px;
-    background-color: #ff7e5f;
+    background-color: #479c76;
     align-self: center;
-    border: 1px solid #ff7e5f;
+    border: 1px solid #ffffff;
     border-radius: 10px;
     transition: background-color 0.3s ease, transform 0.3s ease, border 0.3s ease;
 }
 
 .botoncito:hover {
-    background-color: rgba(255, 79, 47, 0.8);
+    background-color: rgb(91, 205, 152);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
-
 
 @media screen and (max-width: 1200px) {
     form {
@@ -136,7 +76,6 @@ input {
         width: 150px;
     }
 }
-
 
 @media screen and (max-width: 480px) {
     form {

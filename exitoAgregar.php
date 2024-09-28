@@ -8,6 +8,8 @@ $imagen = isset($_POST['imagen']) ? $_POST['imagen'] : '';
 
 $imagenFinal = $_FILES['imagen']['name'];
 
+
+
 $conexion = mysqli_connect(
     "localhost",
     "root",
@@ -17,6 +19,9 @@ $conexion = mysqli_connect(
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
      $query = mysqli_query($conexion, "INSERT INTO pokemon (CODIGO, NOMBRE, DESCRIPCION, TIPO_POKEMON, IMAGEN) VALUES ('$codigoPoke', '$nombrePoke', '$descripcionPoke', '$tipoPoke', '$imagenFinal')");
 }
+
+
+
 
 
 ?>
