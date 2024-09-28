@@ -1,14 +1,15 @@
 body {
-    background: linear-gradient(to right, #001a66, #004d33); /* Ajusta el gradiente según tu preferencia */
+    background: linear-gradient(to right, #fff099, #dab78a);
     font-family: Handjet;
 }
 
 h1 {
-    margin: 20px;
     text-align: center;
-    font-weight: 600;
-    color: #f6f6f6;
+    font-weight: 800;
+    color: #0f0f0f;
     border: #1a1a1a;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
 .formulario {
@@ -18,10 +19,10 @@ h1 {
 }
 
 form {
-    font-family: sans-serif;
     margin: 1.5em;
+    font-family: Playfair Display;
     width: 30%;
-    padding: 40px;
+    padding: 30px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
@@ -45,20 +46,22 @@ input {
     padding-left: 10px;
     background-color: #ffffff44;
     margin-bottom: 10px;
+    color: #000000;
 }
 
 .botoncito {
-    margin-top: 20px;
-    width: 200px;
-    background-color: #479c76;
+    margin-top: 10px;
+    width: 150px;
+    color: #000000;
+    background-color: rgb(182, 160, 59);
     align-self: center;
-    border: 1px solid #ffffff;
     border-radius: 10px;
     transition: background-color 0.3s ease, transform 0.3s ease, border 0.3s ease;
 }
 
 .botoncito:hover {
-    background-color: rgb(91, 205, 152);
+    background-color: #3b1d0e99;
+
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
 }
 
