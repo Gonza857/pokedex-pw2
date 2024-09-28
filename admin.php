@@ -25,6 +25,8 @@ while ($fila = mysqli_fetch_assoc($query)) {
 
 mysqli_close($conexion);
 
+// TODO: renderizar tipo
+
 ?>
 
 <!doctype html>
@@ -41,6 +43,9 @@ mysqli_close($conexion);
 <body>
 <?php require("./components/header.php") ?>
 <main class="col-12">
+    <div class="col-12 d-flex justify-content-center align-items-center py-4">
+        <button>Agregar Pokemon</button>
+    </div>
     <div class="col-8 mx-auto">
         <table class="table table-striped table-bordered table-hover">
             <thead class="table-dark">
@@ -59,8 +64,8 @@ mysqli_close($conexion);
                     <td><?= $pokemon['nombre'] ?></td>
                     <td><?= $pokemon['descripcion'] ?></td>
                     <td>
-                        <div class="d-flex gap-1">
-                            <a href="/pokedex/modificar.php?id=<?= $pokemon["id_base"] ?>">
+                        <div class="d-flex gap-1 w-100 justify-content-center">
+                            <a href="/pokedex-pw2/modificar.php?id=<?= $pokemon["id_base"] ?>">
                                 <button>Modificar</button>
                             </a>
                             <button>Eliminar</button>

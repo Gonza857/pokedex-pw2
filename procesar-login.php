@@ -19,7 +19,7 @@ $correo = $_POST['correo'] ?? "";
 $pass = $_POST['pass'] ?? "";
 
 if (empty($correo) || empty($pass)) {
-    redirigirConError("por favor ingrese su correo y contraseña. ");
+    redirigirConError("Por favor, ingrese su correo y contraseña.");
 }
 
 $stmt = $conn->prepare("SELECT * FROM usuario WHERE correo = :correo");
