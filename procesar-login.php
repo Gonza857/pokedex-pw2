@@ -36,23 +36,24 @@ if ($usuario['password'] != $pass) {
     redirigirConError("Correo electrónico o contraseña incorrectos.");
 }
 
-    $_SESSION['usuario'] = $usuario;
+//    $_SESSION['usuario'] = $usuario;
     try {
-        setearToken($conn, $usuario);
+        $_SESSION['token'] = setearToken($conn, $usuario);
     } catch (PDOException $e) {
         redirigirConError('Error al iniciar sesión. Ingrese nuevamente sus credenciales');
     }
-
-    header("location: index.php");
+    var_dump($_SESSION['token']);
+//    header("location: index.php");
     exit();
 
 
-    function setearToken($conn, $usuario)
+    function setearToken($conn, $usuario): string
     {
         $token = bin2hex(random_bytes(16));
         $sql = "UPDATE usuario SET token = ? WHERE id_usuario = ?";
         $stmt = $conn->prepare($sql);
         $stmt->execute([$token, $usuario['id_usuario']]);
+        return $token;
     }
 
 ?>
