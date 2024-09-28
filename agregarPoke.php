@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+$logueado = (isset($_SESSION["usuario"]) && isset($_SESSION["correo"])) ? true : false;
+if (!$logueado) {
+    header('Location: login.php');
+    exit();
+}
 
 ?>
 

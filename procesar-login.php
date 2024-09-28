@@ -33,7 +33,7 @@ if ($stmt->rowCount() == 0) {
 $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
 
 if (!password_verify($pass, $usuario['password'])) {
-    redirigirConError("correo electronico o contraseña incorrectos. ");
+    redirigirConError("Correo electrónico o contraseña incorrectos.");
 }
 
 $_SESSION['usuario'] = $usuario;
