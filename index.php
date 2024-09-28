@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 $conexion = mysqli_connect(
     "localhost",
     "root",
@@ -22,9 +24,6 @@ while ($fila = mysqli_fetch_assoc($query)) {
     $pokemons[] = $poke;
 }
 
-echo var_dump($pokemons);
-
-
 mysqli_close($conexion);
 
 $resultado = "";
@@ -42,10 +41,9 @@ if ($quiereBuscar) {
         }
     }
     $resultado = "Resultados encontrados: " . count($miBusquedad);
-} else {
-    $resultado = "NO BUSCANDO";
 }
 
+$logueado = (isset($_SESSION["usuario"]) && isset($_SESSION["correo"])) ? true : false;
 
 ?>
 
