@@ -9,18 +9,25 @@ $conexion = mysqli_connect(
 
 $existeBuscado = isset($_GET["id"]) ? $_GET["id"] : false;
 
-$query = mysqli_query($conexion, "SELECT * FROM pokemon WHERE ID_BASE = " . $existeBuscado);
+$query = "SELECT *
+          FROM pokemon p 
+          JOIN tipo t ON p.TIPO_POKEMON = t.ID 
+          WHERE p.ID_BASE = '$existeBuscado'";
 
-$fila = mysqli_fetch_assoc($query);
 
-$poke = [
-    "id_base" => $fila["ID_BASE"],
-    "codigo" => $fila["CODIGO"],
-    "nombre" => $fila["NOMBRE"],
-    "descripcion" => $fila["DESCRIPCION"],
-    "tipos" => $fila["TIPO_POKEMON"],
-    "imagen" => $fila["IMAGEN"],
-];
+$resultado = mysqli_query($conexion, $query);
+
+if (mysqli_num_rows($resultado) == 0) {
+    header("Location: index.php");
+    exit();
+}
+
+$resultadoConvertido = mysqli_fetch_assoc($resultado);
+
+$carpeta = 'imagenes-pokemon/';
+
+$imagen = $carpeta . $resultadoConvertido["IMAGEN"];
+$tipo = 'tipos/' . $resultadoConvertido["imagen"];
 
 ?>
 
@@ -40,19 +47,15 @@ $poke = [
     <!--  WRAPPER  -->
     <div class="col-4 mx-auto d-flex flex-column gap-2 p-2 pokemonCard">
         <div class="pokemonImageContainer">
-            <img src="<?= $poke['imagen']; ?>" alt="<?= ucfirst($poke['nombre']); ?>">
+            <img src="<?= $imagen; ?>" alt="<?= ucfirst($resultadoConvertido['NOMBRE']); ?>">
         </div>
         <div class="d-flex flex-column gap-2 px-4 pb-4">
-            <h2 class="text-center text-white"><?= ucfirst($poke['nombre']); ?></h2>
-            <p class="m-0 fs-5 text-white">Tipos</p>
+            <h2 class="text-center text-white"><?= ucfirst($resultadoConvertido['NOMBRE']); ?></h2>
+            <p class="m-0 fs-5 text-white">Tipo</p>
             <div class="d-flex gap-2 flex-wrap">
-                <!--                --><?php //foreach ($poke["tipos"] as $tipo) :?>
-                <div class="btn btn-info">
-                    <p class="m-0"><?= $poke["tipos"] ?></p>
-                </div>
-                <!--                --><?php //endforeach; ?>
+                    <img class="m-0 w-25 rounded-circle" src="<?= $tipo ?>" alt="<?= $resultadoConvertido['NOMBRE']; ?>">
             </div>
-            <p class="m-0 text-white"><?= $poke['descripcion']; ?></p>
+            <p class="m-0 text-white"><?= $resultadoConvertido['DESCRIPCION']; ?></p>
         </div>
     </div>
 </main>
