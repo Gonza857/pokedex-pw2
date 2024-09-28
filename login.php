@@ -28,9 +28,9 @@ $rutaImagenPokemon = "https://imgs.search.brave.com/VF5mYvpWpZ3w01JGpXbNDeoQIzIS
              class="imagen">
         <form action="<?= $rutaAEnviar?>" method="post" class="d-flex gap-2">
         <label for="correo">Correo electronico:</label>
-        <input class="p-2 px-3" type="text" placeholder="Ingrese su correo electronico..." id="correo" name="correo">
+        <input class="p-2 px-3 text-white" type="text" placeholder="Ingrese su correo electronico..." id="correo" name="correo">
         <label for="pass">Contraseña:</label>
-        <input class="p-2 px-3" type="password" placeholder="Ingrese su contraseña..." id="pass" name="pass">
+        <input class="p-2 px-3 text-white" type="password" placeholder="Ingrese su contraseña..." id="pass" name="pass">
         <input type="submit" value="Ingresar" class="botoncito py-2">
         </form>
         <h1>

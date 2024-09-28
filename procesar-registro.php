@@ -5,26 +5,31 @@ function limpiarInput($data){
     return htmlspecialchars(strip_tags(trim($data)));
 }
 
+
+// Obtención de datos POST
 $username = limpiarInput($_POST['username'] ?? "");
 $correo = limpiarInput($_POST['correo'] ?? "");
 $pass = $_POST['pass'] ?? "";
 $passR = $_POST['passR'] ?? "";
 
+// Redirección por error
 function redirigirConError($mensaje){
     $_SESSION['error'] = $mensaje;
     header("Location: registro.php");
     exit();
 }
 
-
+// Saber si los campos estan vacios.
 $datosVacios = $username === "" || $correo === "" || $pass === "" || $passR === "";
-if($datosVacios){
-    redirigirConError("Los datos no fueron ingresados correctamente. Por favor intente de nuevo");
-}
-
+// Contraseñas distintas
 $passInvalida = $pass !== $passR;
+
+// Validación
+if($datosVacios){
+    redirigirConError("Los datos no fueron ingresados correctamente. Por favor intente de nuevo.");
+}
 if($passInvalida){
-    redirigirConError("Las contraseñas no coinciden. Por favor intente de nuevo");
+    redirigirConError("Las contraseñas no coinciden. Por favor intente de nuevo.");
 }
 
 $conn = new PDO("mysql:host=localhost;dbname=pokedex", "root", "");
@@ -32,8 +37,10 @@ $stmt = $conn->prepare("SELECT * FROM usuario WHERE CORREO = :correo");
 $stmt->bindParam(":correo", $correo);
 $stmt->execute();
 
+
+// Si encuentra resultados en la BD del correo => ya existe.
 if($stmt->rowCount() > 0){
-    redirigirConError("Ese correo ya se encuentra registrado. Reintente con otro");
+    redirigirConError("Ese correo ya se encuentra registrado. Reintente con otro.");
 }
 
 $passHash = password_hash($pass, PASSWORD_DEFAULT);
