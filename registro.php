@@ -1,6 +1,10 @@
 <?php
+session_start();
 $rutaCss = "stylesheets/registro.css";
-$rutaIndex= "index.php";
+$rutaAEnviar= "procesar-registro.php";
+$error = isset($_SESSION["error"]) ? $_SESSION["error"] : null;
+unset($_SESSION["error"]);
+
 ?>
 
 <!doctype html>
@@ -8,23 +12,26 @@ $rutaIndex= "index.php";
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Registro Pokedex</title>
-
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-   <?php echo '<link rel="stylesheet" href="'.$rutaCss.'">' ?>
+    <?php include_once ("./components/fuentes.html"); ?>
+    <?php require("./components/bootstrap-and-general-styles.html") ?>
+    <link rel="stylesheet" href="<?= $rutaCss ?>">
+    <title>Registro Pokedex</title>
 </head>
 <body>
 
-<header>
-<h1>PokeRegistro</h1>
-</header>
+
+
+
 
 <main>
 <div class="formulario">
-    <?php echo '<form action="'.$rutaIndex.'" method="post" class="d-flex gap-2">'; ?>
+    <?php echo '<form action="'.$rutaAEnviar.'" method="post" class="d-flex gap-2">'; ?>
+    <h1>Poke - Registro</h1>
+    <img src="imagenes-pokemon/pikachu.png" class="w-50">
 
-        <label for="nombre">Nombre usuario:</label>
-        <input type="text" placeholder="Ingrese su nombre de usuario" id="nombre" name="nombre" required>
+        <label for="username">Nombre usuario:</label>
+        <input type="text" placeholder="Ingrese su nombre de usuario" id="username" name="username" required>
 
         <label for="correo">Correo electronico:</label>
         <input type="text" placeholder="Ingrese su correo electronico" id="correo" name="correo" required>
@@ -35,8 +42,8 @@ $rutaIndex= "index.php";
         <label for="passR">Repetir contraseña:</label>
         <input type="password" placeholder="Ingrese su contraseña nuevamente" id="passR" name="passR" required>
 
-    <button type="submit" class="botoncito">Ingresar</button>
-
+    <button type="submit" class="boton">Registrarse</button>
+    <?php echo $error ? "<strong>$error</strong>" : "" ?>
     </form>
 
 </div>

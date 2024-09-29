@@ -1,0 +1,133 @@
+
+
+form {
+    padding: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+
+
+button {
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    background-color: #2a5d84;
+    color: #fff;
+    border-radius: 1rem;
+    transition: all .3s;
+}
+
+footer {
+    border-top: 1px solid #2a5d84;
+    background-color: #1a1a1a;
+}
+
+.footerImage {
+    width: 200px;
+}
+
+.footerColBorder {
+    border-left: 1px solid #fff;
+}
+
+.styledSearchInput {
+    outline: none;
+    border: 0;
+    border: none;
+    padding: 10px 20px;
+}
+
+.styledSearchButton {
+    outline: none;
+    border: 0;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    background-color: #2a5d84;
+    color: #fff;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+    transition: all .3s;
+    text-align: center;
+}
+
+.styledCleanButton {
+    outline: none;
+    border: 0;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    background-color: #2a5d84;
+    color: #fff;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+    transition: all .3s;
+    text-decoration: none;
+    text-align: center;
+}
+
+
+button:hover {
+    background-color: #377aae;
+}
+
+.pokemonesContainer {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    gap: 0.5rem;
+}
+
+.pokemonCard {
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 1rem;
+}
+
+.pokemonImageContainer {
+    height: 60%;
+}
+
+.pokemonImageContainer > img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.pokemonTextContainer {
+    height: 40%;
+}
+
+.rosita {
+    color: deeppink;
+}
+
+@media screen and (min-width: 576px){
+    .pokemonesContainer {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media screen and (min-width: 768px){
+    .pokemonesContainer {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (min-width: 992px){
+    .pokemonesContainer {
+        grid-template-columns: repeat(5, 1fr);
+    }
+}
+
+@media screen and (min-width: 1200px){
+    .pokemonesContainer {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+

@@ -1,0 +1,94 @@
+body{
+    background: linear-gradient(to right, #001a66,#004d33);
+    color: #fff;
+}
+
+.imagen{
+    width: 200px;
+    align-self: center;
+}
+
+h1{
+    text-align: center;
+    font-family: Handjet;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+form{
+    flex-direction: column;
+    font-size: 1rem;
+    font-family: Playfair Display;
+    letter-spacing: 2px;
+    padding: 10px;
+}
+
+input::placeholder{
+    color: #ffffff55;
+}
+
+label{
+    align-self: flex-start;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+
+.contenedor{
+    width: 30%;
+    background-color: #00000033;
+    margin: auto;
+    border-radius: 20px;
+    display: flex;
+    flex-direction:column ;
+    justify-content: center;
+    box-shadow: -1px -1px 100px -22px #000000;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.botoncito{
+    margin: auto;
+    width: 50%;
+    color: #fff;
+    background-color: #00000088;
+    transition: all .3s;
+}
+.botoncito:hover{
+    background-color: #000000;
+    box-shadow: inset -1px 0px 95px -21px rgba(0,77,51,1);
+}
+
+input{
+    border: none;
+    border-radius: 0.5rem;
+    background-color: #00000044;
+    margin-bottom: 20px;
+    color: #fff;
+    outline: none;
+}
+
+
+@media screen and (max-width: 768px) {
+    .contenedor {
+        width: 80%;
+        margin: 20px auto;
+    }
+    .imagen {
+        width: 150px;
+    }
+    .botoncito {
+        width: 70%;
+    }
+}
+@media screen and (max-width: 480px) {
+    .contenedor {
+        width: 90%;
+    }
+    .imagen {
+        width: 120px;
+    }
+}
