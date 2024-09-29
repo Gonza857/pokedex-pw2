@@ -49,6 +49,14 @@ class Database
         return [];
     }
 
+    public function fetchSingleAssoc(): array
+    {
+        if ($this->stmt) {
+            return $this->stmt->fetch(PDO::FETCH_ASSOC);
+        }
+        return [];
+    }
+
     /**
      * Cierra conexión con la base de datos.
      * @return void
@@ -79,25 +87,8 @@ class Database
         return false;
     }
 
-    public function getPokemones(): array
-    {
-        $this->iniciarConexion();
-        $this->prepararQuery("SELECT * FROM pokemon");
-        $this->ejecutarConsulta();
-        $pokemones = [];
-        foreach ($this->fetchAllAssoc() as $p) {
-            $pokemonTraido = [
-                "id_base" => $p["ID_BASE"],
-                "codigo" => $p["CODIGO"],
-                "nombre" => $p["NOMBRE"],
-                "descripcion" => $p["DESCRIPCION"],
-                "tipos" => $p["TIPO_POKEMON"],
-                "imagen" => $this->carpetaImagenes . $p["IMAGEN"],
-            ];
-            $pokemones[] = $pokemonTraido;
-        }
-        $this->cerrarSesion();
-        return $pokemones;
+    public function setParametro(string $columna, string $valor) {
+        $this->stmt->bindParam(":{$columna}", $valor);
     }
 
 

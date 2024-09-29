@@ -3,20 +3,17 @@
 require_once "./clases/App.php";
 session_start();
 $app = new App();
-$pokemones = $app->getPokemones();
-$miBusquedad = [];
-$quiereBuscar = $_GET["param"] ?? false;
 
-if ($quiereBuscar) {
-    foreach ($pokemones as $poke) {
-        if (str_contains(strtolower($poke["nombre"]), strtolower($quiereBuscar)) !== false) {
-            $miBusquedad[] = $poke;
-        }
-    }
-    $noEncontrado = count($miBusquedad)==0;
+if (count($resultados) == 0) {
+    $mensaje = "No se han encontrado registros";
+} else {
+    $pokemones = $resultados;
 }
 
-$logueado = isset($_SESSION["usuario"]) && isset($_SESSION["correo"]);
+=======
+$pokemones = $app->getPokemones();
+$quiereBuscar = $_GET["param"] ?? false;
+$miBusquedad = $quiereBuscar ? $app->buscarPokemones($resultados, $quiereBuscar) : [];
 ?>
 
 <!doctype html>
@@ -60,7 +57,7 @@ $logueado = isset($_SESSION["usuario"]) && isset($_SESSION["correo"]);
                 <?php foreach ($miBusquedad as $pokemon): ?>
                     <div class="bg-white p-2 pokemonCard">
                         <div class="pokemonImageContainer">
-                            <img src="<?= $pokemon["imagen"] ?>" class="w-100"/>
+                            <img src="<?=  $carpetaImagenes . $pokemon["imagen"] ?>" class="w-100"/>
                         </div>
                         <div class="d-flex flex-column align-items-center justify-content-center gap-1 pokemonTextContainer p-1">
                             <p class="m-0 p-0 fw-bold"><?= $pokemon["codigo"] ?></p>
@@ -79,7 +76,7 @@ $logueado = isset($_SESSION["usuario"]) && isset($_SESSION["correo"]);
                 <?php foreach ($pokemones as $pokemon): ?>
                     <div class="bg-white p-2 pokemonCard">
                         <div class="pokemonImageContainer">
-                            <img src="<?= $pokemon["imagen"] ?>" class="w-100"/>
+                            <img src="<?= $carpetaImagenes . $pokemon["imagen"] ?>" class="w-100"/>
                         </div>
                         <div class="d-flex flex-column align-items-center justify-content-center gap-1 pokemonTextContainer p-1">
                             <p class="m-0 p-0 fw-bold"><?= $pokemon["codigo"] ?></p>

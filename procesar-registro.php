@@ -1,6 +1,7 @@
 <?php
 session_start();
-require_once("./clases/Database.php");
+require_once("./clases/App.php");
+$app = new App();
 
 function limpiarInput($data)
 {
@@ -34,6 +35,7 @@ if ($datosVacios) {
 if ($passInvalida) {
     redirigirConError("Las contraseñas no coinciden. Por favor intente de nuevo.");
 }
+
 
 $database = new Database("localhost", "root", "", "pokedex");
 $database->iniciarConexion();
