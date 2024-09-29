@@ -3,17 +3,14 @@
 require_once "./clases/App.php";
 session_start();
 $app = new App();
-$resultados = $app->getPokemones();
-$pokemones = [];
-
-if (count($resultados) == 0) {
-    $mensaje = "No se han encontrado registros";
-} else {
-    $pokemones = $resultados;
-}
+$pokemones = $app->getPokemones();
+$noEncontrado = false;
 
 $quiereBuscar = $_GET["param"] ?? false;
-$miBusquedad = $quiereBuscar ? $app->buscarPokemones($resultados, $quiereBuscar) : [];
+$miBusquedad = $quiereBuscar ? $app->buscarPokemones($pokemones, $quiereBuscar) : [];
+if(count($miBusquedad) == 0){
+    $noEncontrado = true;
+}
 $carpetaImagenes = 'imagenes-pokemon/';
 
 ?>
@@ -36,13 +33,13 @@ $carpetaImagenes = 'imagenes-pokemon/';
             <a href="index.php" class="styledCleanButton col-2">
                 Limpiar
             </a>
-            <input name="param" class="col-8 styledSearchInput" type="text"
+            <input name="param" class="col-8 styledSearchInput" type="text" required
                    placeholder="Ingrese el nombre, tipo o número de pokemon...">
             <input class="col-2 styledSearchButton" type="submit" value="Buscar">
         </form>
     </div>
     <!--  TEXTO RESULTADOS  -->
-    <?php if ($quiereBuscar && $miBusquedad == 0): ?>
+    <?php if ($quiereBuscar && $noEncontrado): ?>
         <div class="mx-auto col-12 text-center">
             <h4 class="text-white mt-2 mb-3 p-0">Pokemon no encontrado</h4>
             <a href="index.php" class="btn btn-success">
@@ -67,10 +64,6 @@ $carpetaImagenes = 'imagenes-pokemon/';
                             <a href="detalle.php?id=<?= $pokemon["id_base"] ?>">
                                 <button>Ver detalles</button>
                             </a>
-                            <!--  <p class="m-0 p-0 fs-6">
-                            Descripción: -->
-                            <?php //= $pokemon["descripcion"] ?>
-                            <!--</p>-->
                         </div>
                     </div>
                 <?php endforeach; ?>
