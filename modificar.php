@@ -1,44 +1,16 @@
 <?php
-
+require_once "./clases/App.php";
 session_start();
-$logueado = (isset($_SESSION["usuario"]) && isset($_SESSION["correo"])) ? true : false;
+$logueado = isset($_SESSION["token"]) ?? false;
 if (!$logueado) {
     header('Location: login.php');
     exit();
 }
-
-$conexion = mysqli_connect(
-    "localhost",
-    "root",
-    "",
-    "pokedex") or die ("error en conexion");
-
-$existeBuscado = isset($_GET["id"]) ? $_GET["id"] : false;
-
-$query = mysqli_query($conexion, "SELECT * FROM pokemon WHERE ID_BASE = " . $existeBuscado);
-$query2 = mysqli_query($conexion, "SELECT * FROM TIPOS");
-
-$fila = mysqli_fetch_assoc($query);
-$tipos = mysqli_fetch_assoc($query2);
-$tiposArray = [];
-
-while ($tipos = mysqli_fetch_assoc($query2)) {
-    $tipo = [
-        "id" => $tipos["ID"],
-        "nombre" => $tipos["NOMBRE"],
-        "imagen" => $tipos["imagen"],
-    ];
-    $tiposArray[] = $tipo;
-}
-
-$poke = [
-    "id_base" => $fila["ID_BASE"],
-    "codigo" => $fila["CODIGO"],
-    "nombre" => $fila["NOMBRE"],
-    "descripcion" => $fila["DESCRIPCION"],
-    "tipos" => json_encode($fila["TIPO_POKEMON"]),
-    "imagen" => "./imagenes-pokemon/1.webp",
-];
+$app = new App();
+$existeBuscado = $_GET["id"] ?? false;
+$tiposArray = $app->getTipos();
+$poke = $app->getPokemon($existeBuscado);
+$carpetaImagenes = 'imagenes-pokemon/';
 
 ?>
 
@@ -82,10 +54,9 @@ $poke = [
                 </select>
             </div>
             <div class="d-flex flex-column gap-2 text-white contenedorImagen">
-                <img src="<?= $poke["imagen"] ?>" class="imagenPokemon"/>
+                <img src="<?= $carpetaImagenes . $poke["imagen"] ?>" class="imagenPokemon"/>
                 <input type="hidden" name="imagen" value="<?= $poke["imagen"] ?>"/>
             </div>
-            <p class="text-white"><?php var_dump($poke["id_base"]) ?></p>
             <input type="hidden" name="id_base" value="<?= $poke["id_base"] ?>"/>
             <button type="submit">Actualizar</button>
         </form>

@@ -13,24 +13,10 @@ if (count($resultados) == 0) {
     $pokemones = $resultados;
 }
 
-$resultado = "";
-$miBusquedad = [];
-$acertados = 0;
-
 $quiereBuscar = $_GET["param"] ?? false;
+$miBusquedad = $quiereBuscar ? $app->buscarPokemones($resultados, $quiereBuscar) : [];
 
-if ($quiereBuscar) {
-    $resultado = "BUSCANDO";
-    foreach ($pokemones as $poke) {
-        if (str_contains(strtolower($poke["nombre"]), strtolower($quiereBuscar)) !== false) {
-            $miBusquedad[] = $poke;
-            $acertados++;
-        }
-    }
-    $resultado = "Resultados encontrados: " . count($miBusquedad);
-}
-
-$logueado = isset($_SESSION["usuario"]) && isset($_SESSION["correo"]);
+$carpetaImagenes = 'imagenes-pokemon/';
 
 ?>
 
@@ -72,7 +58,7 @@ $logueado = isset($_SESSION["usuario"]) && isset($_SESSION["correo"]);
                 <?php foreach ($miBusquedad as $pokemon): ?>
                     <div class="bg-white p-2 pokemonCard">
                         <div class="pokemonImageContainer">
-                            <img src="<?= $pokemon["imagen"] ?>" class="w-100"/>
+                            <img src="<?=  $carpetaImagenes . $pokemon["imagen"] ?>" class="w-100"/>
                         </div>
                         <div class="d-flex flex-column align-items-center justify-content-center gap-1 pokemonTextContainer p-1">
                             <p class="m-0 p-0 fw-bold"><?= $pokemon["codigo"] ?></p>
@@ -91,7 +77,7 @@ $logueado = isset($_SESSION["usuario"]) && isset($_SESSION["correo"]);
                 <?php foreach ($pokemones as $pokemon): ?>
                     <div class="bg-white p-2 pokemonCard">
                         <div class="pokemonImageContainer">
-                            <img src="<?= $pokemon["imagen"] ?>" class="w-100"/>
+                            <img src="<?= $carpetaImagenes . $pokemon["imagen"] ?>" class="w-100"/>
                         </div>
                         <div class="d-flex flex-column align-items-center justify-content-center gap-1 pokemonTextContainer p-1">
                             <p class="m-0 p-0 fw-bold"><?= $pokemon["codigo"] ?></p>

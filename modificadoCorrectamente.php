@@ -1,29 +1,14 @@
 <?php
+require_once "./clases/App.php";
+session_start();
+$logueado = isset($_SESSION["token"]) ?? false;
+if (!$logueado) {
+    header('Location: login.php');
+    exit();
+}
 
-
-$conexion = mysqli_connect(
-    "localhost",
-    "root",
-    "",
-    "pokedex") or die ("error en conexion");
-
-$existeBuscado = isset($_GET["id"]) ? $_GET["id"] : false;
-
-$query = mysqli_query($conexion, "SELECT * FROM pokemon WHERE ID_BASE = " . $existeBuscado);
-
-$fila = mysqli_fetch_assoc($query);
-
-$poke = [
-    "id_base" => $fila["ID_BASE"],
-    "codigo" => $fila["CODIGO"],
-    "nombre" => $fila["NOMBRE"],
-    "descripcion" => $fila["DESCRIPCION"],
-    "tipos" => json_encode($fila["TIPO_POKEMON"]),
-    "imagen" => "./imagenes-pokemon/1.webp",
-];
-// TODO: revisar si la traer el pokemon es necesario, ya que la info la trae modificar.php y no se cree
-// no este validada. con hacer update en la db es suficiente creo
-// gonza :)
+$app = new App();
+$existeBuscado = $_GET["id"] ?? false;
 
 $areAllParamettersSetted =
     isset($_POST["codigo"])
@@ -35,8 +20,12 @@ $areAllParamettersSetted =
 
 $error = "";
 $newPoke = [];
+$pudoActualizar = false;
 
-if ($areAllParamettersSetted) {
+if (!$areAllParamettersSetted) {
+    header('Location: modificar.php?id=' . $existeBuscado);
+    exit();
+} else {
     $newPoke = [
         "ID_BASE" => $_POST["id_base"],
         "CODIGO" => $_POST["codigo"],
@@ -45,14 +34,8 @@ if ($areAllParamettersSetted) {
         "IMAGEN" => $_POST["imagen"],
         "TIPO_POKEMON" => $_POST["tipos"],
     ];
-    // TODO: mandar a la db
-//    header("Location: admin.php");
-//    exit();
-} else {
-    //  TODO: manejar error, no estan todos los parametros
-    $hola = "hola, hacer el error";
+    $pudoActualizar = $app->actualizarPokemon($_POST["id_base"], $newPoke);
 }
-
 
 /*
  -- LOGICA PARA AGREGAR, TRANSFOROMAR IMAGEN EN RUTA PARA GUARDAR COMO ATRIBUTO DE POKEMON EN BD -> VA EN "AGREGAR.PHP"
@@ -98,7 +81,13 @@ function saberSiSuTipoEsCorrecto($archivoFormato): bool
 <?php require("./components/header.php") ?>
 <main class="col-12 text-white d-flex justify-content-center align-items-center">
     <div class="d-flex flex-column align-items-center ajustify-content-center">
-        <h1>¡Pokemon modificado correctamente!</h1>
+        <h1>
+            <?php if ($pudoActualizar): ?>
+                Pokemon Actualizado correctamente
+            <?php else: ?>
+                No se pudo actualizar correctamente el pokemon
+            <?php endif; ?>
+        </h1>
         <a href="/pokedex-pw2/admin.php">
             <button>Ir a administración</button>
         </a></div>

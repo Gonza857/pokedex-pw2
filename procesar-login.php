@@ -42,8 +42,7 @@ if ($usuario['password'] != $pass) {
     } catch (PDOException $e) {
         redirigirConError('Error al iniciar sesión. Ingrese nuevamente sus credenciales');
     }
-    var_dump($_SESSION['token']);
-//    header("location: index.php");
+    header("location: index.php");
     exit();
 
 
