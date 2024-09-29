@@ -51,8 +51,7 @@ $tipo = 'tipos/' . $resultadoConvertido["imagen"];
         </div>
         <div class="d-flex flex-column gap-2 px-4 pb-4">
             <h2 class="text-center text-white"><?= ucfirst($resultadoConvertido['NOMBRE']); ?></h2>
-            <p class="m-0 fs-5 text-white">Tipo</p>
-            <div class="d-flex gap-2 flex-wrap">
+            <div class="text-center">
                     <img class="m-0 w-25 rounded-circle" src="<?= $tipo ?>" alt="<?= $resultadoConvertido['NOMBRE']; ?>">
             </div>
             <p class="m-0 text-white"><?= $resultadoConvertido['DESCRIPCION']; ?></p>

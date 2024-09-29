@@ -3,35 +3,20 @@
 require_once "./clases/App.php";
 session_start();
 $app = new App();
-$resultados = $app->getPokemones();
-
-$pokemones = [];
-
-if (count($resultados) == 0) {
-    $mensaje = "No se han encontrado registros";
-} else {
-    $pokemones = $resultados;
-}
-
-$resultado = "";
+$pokemones = $app->getPokemones();
 $miBusquedad = [];
-$acertados = 0;
-
 $quiereBuscar = $_GET["param"] ?? false;
 
 if ($quiereBuscar) {
-    $resultado = "BUSCANDO";
     foreach ($pokemones as $poke) {
         if (str_contains(strtolower($poke["nombre"]), strtolower($quiereBuscar)) !== false) {
             $miBusquedad[] = $poke;
-            $acertados++;
         }
     }
-    $resultado = "Resultados encontrados: " . count($miBusquedad);
+    $noEncontrado = count($miBusquedad)==0;
 }
 
 $logueado = isset($_SESSION["usuario"]) && isset($_SESSION["correo"]);
-
 ?>
 
 <!doctype html>
@@ -58,9 +43,12 @@ $logueado = isset($_SESSION["usuario"]) && isset($_SESSION["correo"]);
         </form>
     </div>
     <!--  TEXTO RESULTADOS  -->
-    <?php if ($quiereBuscar !== false && $miBusquedad == 0): ?>
+    <?php if ($quiereBuscar && $noEncontrado): ?>
         <div class="mx-auto col-12 text-center">
-            <p class="text-white m-0 p-0"> Se encontraron <?= count($miBusquedad) ?> resultados coincidentes</p>
+            <h4 class="text-white mt-2 mb-3 p-0">Pokemon no encontrado</h4>
+            <a href="index.php" class="btn btn-success">
+                Ver listado de pokemones
+            </a>
         </div>
     <?php endif; ?>
     <!-- WRAPPER -->

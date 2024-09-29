@@ -36,16 +36,13 @@ if ($usuario['password'] != $pass) {
     redirigirConError("Correo electrónico o contraseña incorrectos.");
 }
 
-//    $_SESSION['usuario'] = $usuario;
     try {
         $_SESSION['token'] = setearToken($conn, $usuario);
     } catch (PDOException $e) {
         redirigirConError('Error al iniciar sesión. Ingrese nuevamente sus credenciales');
     }
-    var_dump($_SESSION['token']);
-//    header("location: index.php");
+    header("location: index.php");
     exit();
-
 
     function setearToken($conn, $usuario): string
     {

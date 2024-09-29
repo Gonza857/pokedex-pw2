@@ -16,7 +16,7 @@ $conexion = mysqli_connect(
 $existeBuscado = isset($_GET["id"]) ? $_GET["id"] : false;
 
 $query = mysqli_query($conexion, "SELECT * FROM pokemon WHERE ID_BASE = " . $existeBuscado);
-$query2 = mysqli_query($conexion, "SELECT * FROM TIPOS");
+$query2 = mysqli_query($conexion, "SELECT * FROM TIPO");
 
 $fila = mysqli_fetch_assoc($query);
 $tipos = mysqli_fetch_assoc($query2);
