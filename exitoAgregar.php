@@ -30,6 +30,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         exit;
     }
 
+    if(isset($_FILES["imagen"]) && $_FILES["imagen"]["error"] == 0 && $_FILES["imagen"]["size"] > 0){
+        move_uploaded_file($_FILES["imagen"]["tmp_name"], 'imagenes-pokemon/' . $_FILES["imagen"]["name"]);
+    }
+
+
     $stmtInsert=$conexion->prepare("INSERT INTO pokemon (CODIGO,NOMBRE,DESCRIPCION, TIPO_POKEMON, IMAGEN) VALUES (?, ?, ?, ?, ?)");
     $stmtInsert->bind_param('sssss',$codigoPoke,$nombrePoke,$descripcionPoke,$tipoPoke,$imagenFinal);
 
