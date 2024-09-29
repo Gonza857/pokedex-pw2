@@ -8,18 +8,35 @@ if (!$logueado) {
     exit();
 }
 
+$directorio = 'tipos'; // Cambia esto a la ruta de tu carpeta
+$archivos = scandir($directorio);
+
+$options = []; // Array para almacenar los nombres de las imágenes sin extensiones
+
+foreach ($archivos as $archivo) {
+    // Filtrar archivos que no son directorios y que tienen una extensión de imagen
+    if ($archivo !== '.' && $archivo !== '..') {
+        $extension = pathinfo($archivo, PATHINFO_EXTENSION);
+        // Aquí puedes filtrar por tipo de imagen si lo deseas
+        if (in_array(strtolower($extension), ["svg"])) {
+            $nombreSinExtension = pathinfo($archivo, PATHINFO_FILENAME); // Obtener solo el nombre sin extensión
+            $options[] = $nombreSinExtension; // Agregar el nombre al array
+        }
+    }
+}
+
 
 ?>
 
-<!doctype html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Agregar Nuevo Pokemon</title>
-    <link rel="stylesheet" href="stylesheets/agregarPoke.css">
-</head>
-<body>
+    <!doctype html>
+    <html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Agregar Nuevo Pokemon</title>
+        <link rel="stylesheet" href="stylesheets/agregarPoke.css">
+    </head>
+    <body>
     <h1>Poke - Agrego</h1>
     <div class="contFormulario">
         <form action="procesos/procesar-agregar.php" method="post" enctype="multipart/form-data">
@@ -33,16 +50,9 @@ if (!$logueado) {
             <textarea name="descripcion" id="descripcion"></textarea>
 
             <select name="tipo">
-                <option name="1" value="1">Fuego</option>
-                <option name="2" value="2">Agua</option>
-                <option name="3" value="3">Planta</option>
-                <option name="4" value="4">Eléctrico</option>
-                <option name="5" value="5">Hielo</option>
-                <option name="6" value="6">Lucha</option>
-                <option name="7" value="7">Volador</option>
-                <option name="8" value="8">Psíquico</option>
-                <option name="9" value="9">Bicho</option>
-                <option name="10" value="10">Roca</option>
+                <?php foreach ($options as $indice => $nombre) : ?>
+                    <option value="<?= $indice ?>"><?= ucfirst($nombre) ?></option>
+                <?php endforeach; ?>
             </select>
 
 
@@ -53,7 +63,7 @@ if (!$logueado) {
         </form>
     </div>
 
-</body>
-</html>
+    </body>
+    </html>
 
 <?php
