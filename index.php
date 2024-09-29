@@ -3,6 +3,8 @@
 require_once "./clases/App.php";
 session_start();
 $app = new App();
+$resultados = $app->getPokemones();
+$pokemones = [];
 
 if (count($resultados) == 0) {
     $mensaje = "No se han encontrado registros";
@@ -10,10 +12,10 @@ if (count($resultados) == 0) {
     $pokemones = $resultados;
 }
 
-=======
-$pokemones = $app->getPokemones();
 $quiereBuscar = $_GET["param"] ?? false;
 $miBusquedad = $quiereBuscar ? $app->buscarPokemones($resultados, $quiereBuscar) : [];
+$carpetaImagenes = 'imagenes-pokemon/';
+
 ?>
 
 <!doctype html>
@@ -40,7 +42,7 @@ $miBusquedad = $quiereBuscar ? $app->buscarPokemones($resultados, $quiereBuscar)
         </form>
     </div>
     <!--  TEXTO RESULTADOS  -->
-    <?php if ($quiereBuscar && $noEncontrado): ?>
+    <?php if ($quiereBuscar && $miBusquedad == 0): ?>
         <div class="mx-auto col-12 text-center">
             <h4 class="text-white mt-2 mb-3 p-0">Pokemon no encontrado</h4>
             <a href="index.php" class="btn btn-success">
