@@ -1,41 +1,47 @@
-body{
-    background: linear-gradient(to right, #ff7e5f, #feb47b);
-    font-family: Monospace;
+body {
+    background: linear-gradient(to right, #fff099, #dab78a);
+    font-family: Handjet;
 }
 
-h1{
-    margin: 20px;
+h1 {
     text-align: center;
-    font-weight: 600;
+    font-weight: 800;
+    color: #0f0f0f;
+    border: #1a1a1a;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
 }
 
-.formulario{
-  display: flex;
+.formulario {
+    display: flex;
     justify-content: center;
+    font-family: Playfair Display;
+
 }
 
-form{
-    font-family: sans-serif;
+form {
     margin: 1.5em;
+    font-family: Playfair Display;
     width: 30%;
-    padding:40px;
+    padding: 30px;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     background-color: #ffffff33;
+    box-shadow: -1px -1px 100px -22px #000000;
     border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
-input::placeholder{
+input::placeholder {
     color: #00000055;
 }
 
-label{
+label {
     align-self: flex-start;
 }
 
-
-input{
+input {
     width: 350px;
     border: none;
     border-radius: 10px;
@@ -43,20 +49,53 @@ input{
     padding-left: 10px;
     background-color: #ffffff44;
     margin-bottom: 10px;
+    color: #000000;
 }
 
-.botoncito{
-    margin-top:20px;
-    width: 200px;
-    background-color: #ff7e5f;
+.boton {
+    margin-top: 10px;
+    width: 150px;
+    color: #000000;
+    background-color: rgb(218, 199, 103);
     align-self: center;
-    border: 1px solid #ff7e5f;
     border-radius: 10px;
-    transition: background-color 0.3s ease, transform 0.3s ease, border 0.3s ease;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
 }
 
-.botoncito:hover {
-    background-color: rgba(255, 79, 47, 0.8);
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    border: 1px solid grey;
+.boton:hover {
+    background-color: rgba(96, 65, 30, 0.35);
 }
+
+@media screen and (max-width: 1200px) {
+    form {
+        width: 50%;
+        padding: 30px;
+    }
+
+    input {
+        width: 80%;
+    }
+
+    .botoncito {
+        width: 150px;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    form {
+        width: 80%;
+        padding: 20px;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    .botoncito {
+        width: 100%;
+    }
+}
+
+
+
+
