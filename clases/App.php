@@ -82,10 +82,11 @@ class App
         return $resultadosBusqueda;
     }
 
-    public function actualizarPokemon (string $id, array $pokemon): bool {
+    public function actualizarPokemon(string $id, array $pokemon): bool
+    {
         $this->database->iniciarConexion();
         $this->database->prepararQuery(
-                   "UPDATE pokemon
+            "UPDATE pokemon
                           SET NOMBRE = :nombre,
                                DESCRIPCION = :descripcion,
                                TIPO_POKEMON = :tipos,
@@ -126,5 +127,32 @@ class App
         ];
         $this->database->cerrarSesion();
         return $pokeArmado;
+    }
+
+    public function eliminarPokemon(string $idEliminar) : bool
+    {
+        $this->database->iniciarConexion();
+        $this->database->prepararQuery("
+                     DELETE from pokemon
+                     WHERE ID_BASE = :id");
+        $this->database->setParametro("id", $idEliminar);
+        $resultado = $this->database->ejecutarConsulta();
+        $this->database->cerrarSesion();
+        return $resultado;
+    }
+
+    public function altaPokemon(array $newPoke) : bool {
+        $this->database->iniciarConexion();
+        $this->database->prepararQuery("
+                     INSERT INTO pokemon (CODIGO, NOMBRE, DESCRIPCION, TIPO_POKEMON, IMAGEN)
+                     VALUES (:codigo, :nombre, :descripcion, :tipos, :imagen)");
+        $this->database->setParametro("codigo", $newPoke["CODIGO"]);
+        $this->database->setParametro("nombre", $newPoke["NOMBRE"]);
+        $this->database->setParametro("descripcion", $newPoke["DESCRIPCION"]);
+        $this->database->setParametro("tipos", $newPoke["TIPO_POKEMON"]);
+        $this->database->setParametro("imagen", $newPoke["IMAGEN"]);
+        $resultado = $this->database->ejecutarConsulta();
+        $this->database->cerrarSesion();
+        return $resultado;
     }
 }

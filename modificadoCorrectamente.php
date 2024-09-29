@@ -37,32 +37,6 @@ if (!$areAllParamettersSetted) {
     $pudoActualizar = $app->actualizarPokemon($_POST["id_base"], $newPoke);
 }
 
-/*
- -- LOGICA PARA AGREGAR, TRANSFOROMAR IMAGEN EN RUTA PARA GUARDAR COMO ATRIBUTO DE POKEMON EN BD -> VA EN "AGREGAR.PHP"
-$archivo = "";
-$formatosAdmitidos = ["image/jpeg", "image/png", "image/webp"];
-     $archivo = $_FILES["imagen"];
-    if ($archivo["error"] == 0
-        && $archivo["size"] > 0
-        && saberSiSuTipoEsCorrecto($archivo["type"])) {
-        $extension = pathinfo($archivo['name'], PATHINFO_EXTENSION);
-        move_uploaded_file(
-            $_FILES["imagen"]["tmp_name"],
-            "./imagenes-pokemon/" . $poke["id_base"] . "." . $extension);
-
-
-function saberSiSuTipoEsCorrecto($archivoFormato): bool
-{
-    global $formatosAdmitidos;
-    foreach ($formatosAdmitidos as $formato) {
-        if ($formato == $archivoFormato) {
-            return true;
-        }
-    }
-    return false;
-}
- */
-
 
 ?>
 

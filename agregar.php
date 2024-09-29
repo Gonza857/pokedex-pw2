@@ -1,11 +1,13 @@
 <?php
 
-//session_start();
-//$logueado = (isset($_SESSION["usuario"]) && isset($_SESSION["correo"])) ? true : false;
-//if (!$logueado) {
-//    header('Location: login.php');
-//    exit();
-//}
+require_once "./clases/App.php";
+session_start();
+$logueado = isset($_SESSION["token"]) ?? false;
+if (!$logueado) {
+    header('Location: login.php');
+    exit();
+}
+
 
 ?>
 
@@ -20,7 +22,7 @@
 <body>
     <h1>Poke - Agrego</h1>
     <div class="contFormulario">
-        <form action="exitoAgregar.php" method="post" enctype="multipart/form-data">
+        <form action="procesos/procesar-agregar.php" method="post" enctype="multipart/form-data">
             <label for="codigo">Codigo Del Pokemon</label>
             <input type="number" id="codigo" name="codigo">
 
