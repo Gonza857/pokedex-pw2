@@ -42,7 +42,7 @@ unset($_SESSION["error"]);
         <label for="passR">Repetir contraseña:</label>
         <input type="password" placeholder="Ingrese su contraseña nuevamente" id="passR" name="passR" required>
 
-    <button type="submit" class="botoncito">Registrarse</button>
+    <button type="submit" class="boton">Registrarse</button>
     <?php echo $error ? "<strong>$error</strong>" : "" ?>
     </form>
 

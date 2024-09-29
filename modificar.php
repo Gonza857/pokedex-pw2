@@ -6,6 +6,7 @@ if (!$logueado) {
     header('Location: login.php');
     exit();
 }
+
 $app = new App();
 $existeBuscado = $_GET["id"] ?? false;
 $tiposArray = $app->getTipos();

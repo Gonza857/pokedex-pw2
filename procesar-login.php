@@ -36,7 +36,6 @@ if ($usuario['password'] != $pass) {
     redirigirConError("Correo electrónico o contraseña incorrectos.");
 }
 
-//    $_SESSION['usuario'] = $usuario;
     try {
         $_SESSION['token'] = setearToken($conn, $usuario);
     } catch (PDOException $e) {
@@ -44,7 +43,6 @@ if ($usuario['password'] != $pass) {
     }
     header("location: index.php");
     exit();
-
 
     function setearToken($conn, $usuario): string
     {
