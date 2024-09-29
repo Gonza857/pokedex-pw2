@@ -46,7 +46,7 @@ label{
     display: flex;
     flex-direction:column ;
     justify-content: center;
-    box-shadow: -1px -1px 100px -22px black;
+    box-shadow: -1px -1px 100px -22px #000000;
     border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
@@ -58,7 +58,7 @@ label{
     transition: all .3s;
 }
 .botoncito:hover{
-    background-color: black;
+    background-color: #000000;
     box-shadow: inset -1px 0px 95px -21px rgba(0,77,51,1);
 }
 

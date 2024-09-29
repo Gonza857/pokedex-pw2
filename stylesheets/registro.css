@@ -16,6 +16,7 @@ h1 {
     display: flex;
     justify-content: center;
     font-family: Playfair Display;
+
 }
 
 form {
@@ -27,7 +28,9 @@ form {
     align-items: center;
     flex-direction: column;
     background-color: #ffffff33;
+    box-shadow: -1px -1px 100px -22px #000000;
     border-radius: 10px;
+    border: 1px solid rgba(0, 0, 0, 0.3);
 }
 
 input::placeholder {
@@ -49,20 +52,18 @@ input {
     color: #000000;
 }
 
-.botoncito {
+.boton {
     margin-top: 10px;
     width: 150px;
     color: #000000;
-    background-color: rgb(182, 160, 59);
+    background-color: rgb(218, 199, 103);
     align-self: center;
     border-radius: 10px;
-    transition: background-color 0.3s ease, transform 0.3s ease, border 0.3s ease;
+    box-shadow: 0 1px 10px rgba(0, 0, 0, 0.3);
 }
 
-.botoncito:hover {
-    background-color: #3b1d0e99;
-
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+.boton:hover {
+    background-color: rgba(96, 65, 30, 0.35);
 }
 
 @media screen and (max-width: 1200px) {
