@@ -1,7 +1,6 @@
 <?php
 
 $members = [
-    "Arias, Doña Sol Macarena",
     "Nania, Tomás Agustín",
     "Hidalgo, Brian Leonel",
     "Noceda, Lorenzo Facundo",
