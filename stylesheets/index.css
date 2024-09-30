@@ -8,7 +8,11 @@ h1 {
     text-align: center;
 }
 
-
+form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
 
 button {
     border: none;
@@ -44,7 +48,6 @@ footer {
     outline: none;
     border: 0;
     border: none;
-    outline: none;
     padding: 10px 20px;
     background-color: #2a5d84;
     color: #fff;
@@ -58,7 +61,6 @@ footer {
     outline: none;
     border: 0;
     border: none;
-    outline: none;
     padding: 10px 20px;
     background-color: #2a5d84;
     color: #fff;
@@ -67,6 +69,13 @@ footer {
     transition: all .3s;
     text-decoration: none;
     text-align: center;
+}
+.styledSearchInput,
+.styledSearchButton,
+.styledCleanButton {
+    flex: 1;
+    width: 100%;
+    margin-bottom: 0.5rem;
 }
 
 
@@ -106,6 +115,27 @@ button:hover {
 .rosita {
     color: deeppink;
 }
+@media (max-width: 400px) {
+    .styledSearchInput {
+        flex: 100%;
+    }
+
+    .styledSearchButton,
+    .styledCleanButton {
+        flex: 100%;
+        text-align: center;
+        border-radius: 0;
+    }
+
+    form {
+        flex-direction: column;
+    }
+}
+
+@media (min-width: 576px) {
+    .styledSearchInput {
+        flex: 8;
+    }
 
 @media screen and (min-width: 576px){
     .pokemonesContainer {
@@ -125,9 +155,11 @@ button:hover {
     }
 }
 
-@media screen and (min-width: 1200px){
+@media screen and (min-width: 1200px) {
     .pokemonesContainer {
         grid-template-columns: repeat(6, 1fr);
     }
 }
+}
+
 
