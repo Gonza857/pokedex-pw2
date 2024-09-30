@@ -43,10 +43,21 @@ unset($_SESSION["error"]);
         <input type="password" placeholder="Ingrese su contraseña nuevamente" id="passR" name="passR" required>
 
     <button type="submit" class="boton">Registrarse</button>
+    <button type="button" class="btn btn-secondary mt-3" onclick="window.location.href='index.php';">Volver</button>
+
+
     <?php echo $error ? "<strong>$error</strong>" : "" ?>
     </form>
 
+
+
+
+
+
+
 </div>
+
+
 </main>
 
 </body>
