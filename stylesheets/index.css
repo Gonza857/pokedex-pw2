@@ -1,17 +1,10 @@
 
-
 form {
     padding: 10px;
 }
 
 h1 {
     text-align: center;
-}
-
-form {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
 }
 
 button {
@@ -22,19 +15,6 @@ button {
     color: #fff;
     border-radius: 1rem;
     transition: all .3s;
-}
-
-footer {
-    border-top: 1px solid #2a5d84;
-    background-color: #1a1a1a;
-}
-
-.footerImage {
-    width: 200px;
-}
-
-.footerColBorder {
-    border-left: 1px solid #fff;
 }
 
 .styledSearchInput {
@@ -51,7 +31,7 @@ footer {
     padding: 10px 20px;
     background-color: #2a5d84;
     color: #fff;
-    border-top-right-radius: 1rem;
+    border-bottom-left-radius: 1rem;
     border-bottom-right-radius: 1rem;
     transition: all .3s;
     text-align: center;
@@ -64,18 +44,11 @@ footer {
     padding: 10px 20px;
     background-color: #2a5d84;
     color: #fff;
-    border-top-left-radius: 1rem;
-    border-bottom-left-radius: 1rem;
     transition: all .3s;
     text-decoration: none;
     text-align: center;
-}
-.styledSearchInput,
-.styledSearchButton,
-.styledCleanButton {
-    flex: 1;
-    width: 100%;
-    margin-bottom: 0.5rem;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
 }
 
 
@@ -115,41 +88,30 @@ button:hover {
 .rosita {
     color: deeppink;
 }
-@media (max-width: 400px) {
-    .styledSearchInput {
-        flex: 100%;
-    }
 
-    .styledSearchButton,
-    .styledCleanButton {
-        flex: 100%;
-        text-align: center;
-        border-radius: 0;
-    }
-
-    form {
-        flex-direction: column;
-    }
-}
-
-@media (min-width: 576px) {
-    .styledSearchInput {
-        flex: 8;
-    }
-
-@media screen and (min-width: 576px){
+@media screen and (min-width: 576px) {
     .pokemonesContainer {
         grid-template-columns: repeat(3, 1fr);
     }
 }
-
-@media screen and (min-width: 768px){
+@media screen and (min-width: 768px) {
     .pokemonesContainer {
         grid-template-columns: repeat(4, 1fr);
     }
+    .styledSearchButton {
+        border-bottom-left-radius: unset;
+        border-top-right-radius: 1rem;
+        border-bottom-right-radius: 1rem;
+    }
+
+    .styledCleanButton {
+        border-top-right-radius: unset;
+        border-top-left-radius: 1rem;
+        border-bottom-left-radius: 1rem;
+    }
 }
 
-@media screen and (min-width: 992px){
+@media screen and (min-width: 992px) {
     .pokemonesContainer {
         grid-template-columns: repeat(5, 1fr);
     }
@@ -159,7 +121,6 @@ button:hover {
     .pokemonesContainer {
         grid-template-columns: repeat(6, 1fr);
     }
-}
 }
 
 

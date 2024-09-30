@@ -20,7 +20,7 @@ $carpetaImagenes = 'imagenes-pokemon/';
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php require("./components/bootstrap-and-general-styles.html") ?>
+    <?php require_once("./components/bootstrap-and-general-styles.html") ?>
     <!--  Estilos del index  -->
     <link rel="stylesheet" href="stylesheets/index.css">
     <title>Pokedex</title>
@@ -28,14 +28,14 @@ $carpetaImagenes = 'imagenes-pokemon/';
 <body>
 <?php require("./components/header.php") ?>
 <main class="col-12 pb-5">
-    <div class="col-12 col-md-5 mx-auto pt-2">
-        <form class="col-12 d-flex flex-wrap">
-            <a href="index.php" class="styledCleanButton col-2">
+    <div class="col-12 col-md-10 mx-auto pt-2">
+        <form class="col-12 col-sm-10 col-md-12 col-lg-9 col-xl-8 mx-auto d-flex flex-column flex-md-row flex-wrap">
+            <a href="index.php" class="styledCleanButton col-12 col-md-2">
                 Limpiar
             </a>
-            <input name="param" class="col-8 styledSearchInput" type="text" required
+            <input name="param" class="col-12 col-md-8 styledSearchInput" type="text" required
                    placeholder="Ingrese el nombre, tipo o número de pokemon...">
-            <input class="col-2 styledSearchButton" type="submit" value="Buscar">
+            <input class="col-12 col-md-2 styledSearchButton" type="submit" value="Buscar">
         </form>
     </div>
     <!--  TEXTO RESULTADOS  -->

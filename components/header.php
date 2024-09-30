@@ -5,8 +5,8 @@ $logueado = isset($_SESSION["token"]);
 ?>
 
 <header class="col-12">
-    <div class="col-10 mx-auto d-flex flex-wrap  justify-content-between align-items-center wrapperHeader">
-        <a href="/pokedex-pw2/index.php" class="text-decoration-none box2 py-3">
+    <div class="col-12 px-2 px-md-0 col-md-10 mx-auto d-flex flex-wrap justify-content-between align-items-center">
+        <a href="/pokedex-pw2/index.php" class="text-decoration-none box2 d-flex align-items-center">
             <div class="overflow-hidden headerImageContainer mx-auto">
                 <img src="img/assets/pokemonlogo.svg" alt="Logo">
             </div>

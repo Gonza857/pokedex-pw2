@@ -1,56 +1,54 @@
-body{
-    background: linear-gradient(to right, #001a66,#004d33);
+body {
+    background: linear-gradient(to right, #001a66, #004d33);
     color: white;
 }
 
-.volver{
+.agregarTitle {
+    text-align: center;
+    font-family: Handjet, serif;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: sans-serif;
+    letter-spacing: normal;
+}
+
+a {
+    color: white;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.volver {
     width: 30%;
     margin: auto;
     display: flex;
     justify-content: center;
 }
 
-button{
+button {
     border: none;
     padding: 10px;
     border-radius: 20px;
 }
 
-a{
-    color: white;
-    text-decoration: none;
-}
-
-a:hover{
-    text-decoration: underline;
-}
-
-
-
-.contFormulario{
-    width: 30%;
+.contFormulario {
     margin: auto;
     background-color: #00000033;
     border-radius: 20px;
-    padding: 50px;
 }
 
 
-
-.botoncito{
-    margin: auto;
-    width: 50%;
-    color: white;
-    background-color: #00000088;
-    transition: all .3s;
-}
-
-.botoncito:hover{
-    background-color: black;
-    box-shadow: inset -1px 0px 95px -21px rgba(0,77,51,1);
-}
-
-input{
+input {
     padding: 5px;
     border: none;
     border-radius: 10px;
@@ -60,7 +58,7 @@ input{
     color: white;
 }
 
-textarea{
+textarea {
     padding: 5px;
     border: none;
     border-radius: 10px;
@@ -70,17 +68,16 @@ textarea{
     color: white;
 }
 
-select{
+select {
     padding: 5px;
     border: none;
     border-radius: 10px;
     padding-left: 10px;
-    background-color: #00000044;
     margin-bottom: 20px;
-    color: white;
+    color: #000;
 }
 
-.imagen{
+.imagen {
     padding: 5px;
     border: none;
     border-radius: 10px;
@@ -91,14 +88,9 @@ select{
 }
 
 
-h1{
+h1 {
     text-align: center;
 }
 
-form{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 10px;
-}
+
 

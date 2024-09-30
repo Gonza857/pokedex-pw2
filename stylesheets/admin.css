@@ -1,4 +1,25 @@
 td, th {
     padding: 0;
     vertical-align: middle;
+    font-size: 0.8rem !important;
+}
+
+.tablaPokemones {
+    height: fit-content;
+}
+
+.tipoImagenContenedor {
+    height: 100%;
+}
+
+.tipoImagenContenedor > img {
+    width: 25px;
+    height: 25px;
+}
+
+
+@media (min-width: 576px) {
+    td, th {
+        font-size: 1rem !important;
+    }
 }
