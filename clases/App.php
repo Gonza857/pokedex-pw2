@@ -12,7 +12,7 @@ class App
         $this->database = new Database("localhost", "root", "", "pokedex");
     }
 
-    public function getPokemones()
+    public function getPokemones(): array
     {
         $this->database->iniciarConexion();
         $this->database->prepararQuery("SELECT * FROM pokemon");
