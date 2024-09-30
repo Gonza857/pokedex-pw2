@@ -1,13 +1,32 @@
 <?php
 session_start();
 $logueado = isset($_SESSION["token"]) ?? false;
+$registro = "";
+$mensajeAgregado = null;
+$agrega = false;
+
+/*
+  sinLoguarse && noHayRegistro -> CHAU!
+  sinLoguearse && hayRegistro -> entonces recien se registró
+  logueado && noHayRegistro -> agrega
+ */
+
 if (!$logueado && !isset($_SESSION["registro-exitoso"])) {
+    // sin loguear y sin registro exitoso
     header('Location: login.php');
     exit();
+} elseif (!$logueado && isset($_SESSION["registro-exitoso"])) {
+    // sinLoguearse && hayRegistro -> entonces recien se registró
+    $registro = $_SESSION["registro-exitoso"] ?? null;
+    unset($_SESSION["registro-exitoso"]);
+} else if ($logueado && !isset($_SESSION["registro-exitoso"])) {
+    // accion-mensaje
+    $mensajeAgregado = $_SESSION["accion-mensaje"] ?? "Que haces aca flaco?";
+    unset($_SESSION["accion-mensaje"]);
+    $agrega = true;
+} else {
+    echo "aca no flaco";
 }
-$mensajeAgregado = $_SESSION["accion-mensaje"] ?? "Que haces aca flaco?";
-$registro = $_SESSION["registro-exitoso"] ?? null;
-unset($_SESSION["accion-mensaje"]);
 
 
 ?>
@@ -25,7 +44,7 @@ unset($_SESSION["accion-mensaje"]);
 </head>
 <body>
 <main class="d-flex justify-content-center align-items-center flex-column gap-2">
-    <?php if (is_string($mensajeAgregado) && is_null($registro)) : ?>
+    <?php if ($agrega) : ?>
         <h1>
             <?= $mensajeAgregado ?>
         </h1>

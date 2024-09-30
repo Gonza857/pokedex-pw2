@@ -1,5 +1,7 @@
 <?php
 
+use JetBrains\PhpStorm\NoReturn;
+
 require_once "Database.php";
 
 class App
@@ -181,7 +183,7 @@ class App
         $this->database->cerrarSesion();
         return $resultado;
     }
-    public function redirigirConError(string $mensaje, string $ruta): void
+    #[NoReturn] public function redirigirConError(string $mensaje, string $ruta): void
     {
         $_SESSION["error-mensaje"] = $mensaje;
         header("Location: " . $ruta);
