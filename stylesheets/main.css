@@ -20,13 +20,22 @@ header > div {
 }
 
 .headerImageContainer {
-    width: fit-content;
-    height: 100%;
+    width: auto;
+    height: 80px;
     object-fit: contain;
+    overflow: visible;
 }
 
 .headerImageContainer > img {
+    width: auto;
     height: 100%;
+}
+
+.wrapperHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 .box2{
@@ -38,6 +47,7 @@ main {
 }
 
 button {
+    width: 150px;
     border: none;
     outline: none;
     padding: 10px 20px;
@@ -58,6 +68,27 @@ button {
 
 .bor3 {
     border: 5px solid blue;
+}
+
+
+.footerImage {
+    max-width: 100px;
+    max-height: 100px;
+    object-fit: contain;
+}
+
+
+
+@media (max-width: 576px) {
+    .headerImageContainer {
+        height: 50px;
+    }
+
+    button {
+        width: 125px;
+        padding: 5px 10px;
+        font-size: 14px;
+    }
 }
 
 
