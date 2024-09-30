@@ -1,0 +1,25 @@
+body{
+   background: linear-gradient(to right, #a1c4fd, #c2e9fb);
+
+   text-align: center;
+}
+
+h1{
+
+}
+
+a{
+   background-color: rgba(42, 60, 132, 0.35);
+   padding: 5px;
+   font-family: Dubai;
+   border-radius: 5px;
+   text-decoration: none;
+   color: #000000;
+   transition: all .3s;
+}
+
+a:hover{
+   background-color: rgba(0, 26, 102, 0.58);
+
+}
+

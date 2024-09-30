@@ -44,7 +44,7 @@ $pencilIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fi
 <?php require("./components/header.php") ?>
 <main class="col-12">
     <div class="col-12 d-flex justify-content-center align-items-center py-4">
-        <a href="agregarPoke.php">
+        <a href="agregar.php">
             <button>Agregar Pokemon</button>
         </a>
     </div>
@@ -72,9 +72,11 @@ $pencilIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fi
                                     <?= $pencilIcon ?>
                                 </button>
                             </a>
-                            <button class="fs-5 px-3 py-2 d-flex justify-content-center align-items-center">
-                                <?= $trashIcon ?>
-                            </button>
+                            <a href="procesos/procesar-eliminar.php?id=<?= $pokemon["id_base"] ?>">
+                                <button class="fs-5 px-3 py-2 d-flex justify-content-center align-items-center">
+                                    <?= $trashIcon ?>
+                                </button>
+                            </a>
                         </div>
                     </td>
                 </tr>

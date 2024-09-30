@@ -30,7 +30,7 @@ $carpetaImagenes = 'imagenes-pokemon/';
 <?php require("./components/header.php") ?>
 <main class="col-12">
     <div class="mx-auto">
-        <form method="post" action="modificadoCorrectamente.php?id=<?= $poke["id_base"] ?>"
+        <form method="post" action="./procesos/procesar-modificar.php?id=<?= $poke["id_base"] ?>"
               enctype="multipart/form-data"
               class="mt-3 d-flex flex-column gap-2 col-4 mx-auto border rounded-4 p-4">
             <h3 class="text-center text-white">Modificar Pokemon: <?= $poke["nombre"] ?></h3>
