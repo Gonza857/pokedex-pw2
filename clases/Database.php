@@ -52,7 +52,10 @@ class Database
     public function fetchSingleAssoc(): array
     {
         if ($this->stmt) {
-            return $this->stmt->fetch(PDO::FETCH_ASSOC);
+            $result = $this->stmt->fetch(PDO::FETCH_ASSOC);
+            if ($result !== false) {
+                return $result;
+            }
         }
         return [];
     }
@@ -87,7 +90,8 @@ class Database
         return false;
     }
 
-    public function setParametro(string $columna, string $valor) {
+    public function setParametro(string $columna, string $valor)
+    {
         $this->stmt->bindParam(":{$columna}", $valor);
     }
 

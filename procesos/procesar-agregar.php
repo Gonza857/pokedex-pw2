@@ -8,6 +8,37 @@ if (!$logueado) {
     exit();
 }
 
+$pudoAgregar = false;
+
+$tiposPermitidos = ['image/svg+xml', 'image/webp', 'image/png', 'image/jpeg', 'image/jpg', 'image/svg+xml'];
+
+if (isset($_FILES['imagen']) && $_FILES['imagen']['error'] === UPLOAD_ERR_OK) {
+    $archivo = $_FILES['imagen'];
+    $nombreArchivo = $archivo['name'];
+    $tipoArchivo = $archivo['type'];
+    $tamanoArchivo = $archivo['size'];
+    $errorArchivo = $archivo['error'];
+    $rutaTemporal = $archivo['tmp_name'];
+
+    if (!in_array($tipoArchivo, $tiposPermitidos)) {
+        $app->redirigirConError("El tipo de archivo no está permitido. Solo se permiten SVG, WEBP, PNG, JPG, y JPEG.", "../agregar.php");
+    } // Si no hay errores y el archivo es válido
+    else {
+        // Mover el archivo a la carpeta de destino
+        $carpetaDestino = 'imagenes-pokemon/';  // Ruta de la carpeta donde almacenarás las imágenes
+        $rutaDestino = $carpetaDestino . basename($nombreArchivo);
+
+        if (move_uploaded_file($rutaTemporal, $rutaDestino)) {
+            $pudoAgregar = true;
+        } else {
+            echo "Hubo un error al subir el archivo.";
+        }
+    }
+} else {
+    $app->redirigirConError("No se ha subido ningún archivo o hubo un error en la subida.", "../agregar.php");
+
+}
+
 $pCodigo = $_POST['codigo'] ?? '';
 $pNombre = $_POST['nombre'] ?? '';
 $pDescripcion = $_POST['descripcion'] ?? '';
@@ -20,11 +51,9 @@ $areAllParamettersSetted =
     && isset($_POST["descripcion"])
     && isset($_POST["tipo"]);
 
-$pudoAgregar = false;
 
 if (!$areAllParamettersSetted) {
-    header('Location: agregar.php');
-    exit();
+    $app->redirigirConError("Completa todos los campos.", "../agregar.php");
 } else {
     $newPoke = [
         "CODIGO" => $pCodigo,

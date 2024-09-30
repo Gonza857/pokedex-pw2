@@ -25,7 +25,7 @@ $carpetaTipos = "tipos/";
 <?php require("./components/header.php") ?>
 <main class="col-12 d-flex justify-content-center align-items-center">
     <!--  WRAPPER  -->
-        <div class="col-4 mx-auto d-flex flex-column gap-2 p-2 pokemonCard">
+        <div class="col-10 col-sm-8 col-md-4 mx-auto d-flex flex-column gap-2 p-2 pokemonCard">
             <div class="pokemonImageContainer">
                 <h2 class="text-center text-white"><?= ucfirst($resultadoConvertido['nombre']); ?></h2>
                 <img src="<?= $carpetaPokemones . $resultadoConvertido["imagen"]; ?>"

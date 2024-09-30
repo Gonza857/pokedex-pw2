@@ -27,6 +27,7 @@ $trashIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fil
 $pencilIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-fill" viewBox="0 0 16 16">
   <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.5.5 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11z"/>
 </svg>';
+$carpetaTipos = "tipos/";
 ?>
 
 <!doctype html>
@@ -35,27 +36,27 @@ $pencilIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fi
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <?php require("./components/bootstrap-and-general-styles.html") ?>
+    <?php require_once("./components/bootstrap-and-general-styles.html") ?>
     <!--  Estilos del admin  -->
     <link rel="stylesheet" href="stylesheets/admin.css">
     <title>Admin</title>
 </head>
 <body>
 <?php require("./components/header.php") ?>
-<main class="col-12">
+<main class="col-12 pb-4">
     <div class="col-12 d-flex justify-content-center align-items-center py-4">
         <a href="agregar.php">
             <button>Agregar Pokemon</button>
         </a>
     </div>
-    <div class="col-6 mx-auto">
-        <table class="table table-striped table-bordered table-hover">
+    <div class="col-11 col-sm-10 col-md-8 mx-auto border rounded-4 overflow-hidden tablaPokemones">
+        <table class="table table-striped table-bordered table-hover mb-0">
             <thead class="table-dark">
             <tr class="text-center">
                 <th>Código</th>
                 <th>Nombre</th>
-                <!--                <th>Tipos</th>-->
-                <th>Descripción</th>
+                <th>Tipo</th>
+                <th class="d-none d-md-table-cell">Descripción</th>
                 <th>Acciones</th>
             </tr>
             </thead>
@@ -64,16 +65,22 @@ $pencilIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fi
                 <tr>
                     <td><?= $pokemon['codigo'] ?></td>
                     <td><?= $pokemon['nombre'] ?></td>
-                    <td><?= $pokemon['descripcion'] ?></td>
+                    <td>
+                        <div class="tipoImagenContenedor d-flex justify-content-center align-items-center">
+                            <img src="<?= $carpetaTipos . $pokemon['tipos'] ?>"
+                                 alt="<?= $pokemon["nombre"] ?>"/>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell"><?= $pokemon['descripcion'] ?></td>
                     <td>
                         <div class="d-flex gap-1 w-100 justify-content-center">
                             <a href="/pokedex-pw2/modificar.php?id=<?= $pokemon["id_base"] ?>">
-                                <button class="fs-5 px-3 py-2 d-flex justify-content-center align-items-center">
+                                <button class="fs-5 px-2 py-2 px-md-3 d-flex justify-content-center align-items-center">
                                     <?= $pencilIcon ?>
                                 </button>
                             </a>
                             <a href="procesos/procesar-eliminar.php?id=<?= $pokemon["id_base"] ?>">
-                                <button class="fs-5 px-3 py-2 d-flex justify-content-center align-items-center">
+                                <button class="fs-5 px-2 py-2 px-md-3 d-flex justify-content-center align-items-center">
                                     <?= $trashIcon ?>
                                 </button>
                             </a>
@@ -86,5 +93,10 @@ $pencilIcon = '<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fi
         </table>
     </div>
 </main>
+<?php include_once("./components/footer.php") ?>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous">
+</script>
 </body>
 </html>

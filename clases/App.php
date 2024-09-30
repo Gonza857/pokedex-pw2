@@ -15,7 +15,11 @@ class App
     public function getPokemones(): array
     {
         $this->database->iniciarConexion();
-        $this->database->prepararQuery("SELECT * FROM pokemon");
+        $this->database->prepararQuery("
+                SELECT pokemon.*,
+                t.imagen as tipoImagen
+                FROM pokemon
+                JOIN tipo t ON pokemon.TIPO_POKEMON = t.ID");
         $this->database->ejecutarConsulta();
         $pokemones = [];
         foreach ($this->database->fetchAllAssoc() as $p) {
@@ -24,7 +28,7 @@ class App
                 "codigo" => $p["CODIGO"],
                 "nombre" => $p["NOMBRE"],
                 "descripcion" => $p["DESCRIPCION"],
-                "tipos" => $p["TIPO_POKEMON"],
+                "tipos" => $p["tipoImagen"],
                 "imagen" => $p["IMAGEN"],
             ];
             $pokemones[] = $pokemonTraido;
@@ -36,7 +40,12 @@ class App
     public function getPokemon($id): array
     {
         $this->database->iniciarConexion();
-        $this->database->prepararQuery("SELECT * FROM pokemon WHERE ID_BASE = :id");
+        $this->database->prepararQuery("
+                    SELECT pokemon.*,
+                    t.imagen as tipoImagen
+                    FROM pokemon 
+                    JOIN tipo t ON pokemon.TIPO_POKEMON = t.ID
+                    WHERE pokemon.ID_BASE = :id");
         $this->database->setParametro("id", $id);
         // $this->database->prepararQuery("SELECT * FROM pokemon WHERE ID_BASE = " . $existeBuscado);
         $this->database->ejecutarConsulta();
@@ -46,7 +55,7 @@ class App
             "codigo" => $pokemonDb["CODIGO"],
             "nombre" => $pokemonDb["NOMBRE"],
             "descripcion" => $pokemonDb["DESCRIPCION"],
-            "tipos" => $pokemonDb["TIPO_POKEMON"],
+            "tipos" => $pokemonDb["tipoImagen"],
             "imagen" => $pokemonDb["IMAGEN"],
         ];
         $this->database->cerrarSesion();
@@ -129,7 +138,7 @@ class App
         return $pokeArmado;
     }
 
-    public function eliminarPokemon(string $idEliminar) : bool
+    public function eliminarPokemon(string $idEliminar): bool
     {
         $this->database->iniciarConexion();
         $this->database->prepararQuery("
@@ -141,7 +150,8 @@ class App
         return $resultado;
     }
 
-    public function altaPokemon(array $newPoke) : bool {
+    public function altaPokemon(array $newPoke): bool
+    {
         $this->database->iniciarConexion();
         $this->database->prepararQuery("
                      INSERT INTO pokemon (CODIGO, NOMBRE, DESCRIPCION, TIPO_POKEMON, IMAGEN)
@@ -155,4 +165,63 @@ class App
         $this->database->cerrarSesion();
         return $resultado;
     }
+
+    public function altaUsuario (string $username, string $email, string $pass) : bool
+    {
+        $this->database->iniciarConexion();
+        $this->database->prepararQuery("
+                INSERT INTO usuario (username, password, correo) 
+                VALUES (:username, :pass, :correo)");
+
+        $this->database->setParametro("username", $username);
+        $this->database->setParametro("pass", $pass);
+        $this->database->setParametro("correo", $email);
+
+        $resultado = $this->database->ejecutarConsulta();
+        $this->database->cerrarSesion();
+        return $resultado;
+    }
+    public function redirigirConError(string $mensaje, string $ruta): void
+    {
+        $_SESSION["error-mensaje"] = $mensaje;
+        header("Location: " . $ruta);
+        exit();
+    }
+
+    public function getUsuario(string $correo) : array
+    {
+        $this->database->iniciarConexion();
+        $this->database->prepararQuery("SELECT * FROM usuario WHERE correo = :correo");
+        $this->database->setParametro("correo", $correo);
+        $this->database->ejecutarConsulta();
+        $resultado = $this->database->fetchSingleAssoc();
+        $this->database->cerrarSesion();
+        return $resultado;
+    }
+
+    public function setearTokenAlUsuario(array $usuario): false|string
+    {
+        $token = bin2hex(random_bytes(16));
+        $this->database->iniciarConexion();
+        $this->database->prepararQuery("
+                    UPDATE usuario 
+                    SET token = :token 
+                    WHERE id_usuario = :idUsuario");
+        $this->database->setParametro("idUsuario", $usuario["id_usuario"]);
+        $this->database->setParametro("token", $token);
+        $pudo = $this->database->ejecutarConsulta();
+        $this->database->cerrarSesion();
+        if ($pudo) {
+            return $token;
+        }
+        return false;
+    }
+
+    public function limpiarInput(mixed $param): string
+    {
+        return htmlspecialchars(strip_tags(trim($param)));
+
+    }
+
+
 }
