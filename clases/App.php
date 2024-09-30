@@ -19,7 +19,8 @@ class App
         $this->database->iniciarConexion();
         $this->database->prepararQuery("
                 SELECT pokemon.*,
-                t.imagen as tipoImagen
+                t.imagen as tipoImagen,
+                t.NOMBRE as tipoNombre
                 FROM pokemon
                 JOIN tipo t ON pokemon.TIPO_POKEMON = t.ID");
         $this->database->ejecutarConsulta();
@@ -120,10 +121,11 @@ class App
     {
         $this->database->iniciarConexion();
         $this->database->prepararQuery("
-                    SELECT *
-                    FROM pokemon p
-                    JOIN tipo t ON p.TIPO_POKEMON = t.ID
-                    WHERE p.ID_BASE = :idBase");
+                    SELECT pokemon.*,
+                    t.imagen as tipoImagen
+                    FROM pokemon
+                    JOIN tipo t ON pokemon.TIPO_POKEMON = t.ID
+                    WHERE pokemon.ID_BASE = :idBase");
         $this->database->setParametro("idBase", $id);
         $this->database->ejecutarConsulta();
         $pokemonDb = $this->database->fetchSingleAssoc();
@@ -134,7 +136,7 @@ class App
             "descripcion" => $pokemonDb["DESCRIPCION"],
             "tipos" => $pokemonDb["TIPO_POKEMON"],
             "imagen" => $pokemonDb["IMAGEN"],
-            "tipoImagen" => $pokemonDb["imagen"],
+            "tipoImagen" => $pokemonDb["tipoImagen"],
         ];
         $this->database->cerrarSesion();
         return $pokeArmado;
