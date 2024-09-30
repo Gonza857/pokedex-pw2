@@ -32,6 +32,8 @@ $rutaImagenPokemon = "https://imgs.search.brave.com/VF5mYvpWpZ3w01JGpXbNDeoQIzIS
         <label for="pass">Contraseña:</label>
         <input class="p-2 px-3 text-white" type="password" placeholder="Ingrese su contraseña..." id="pass" name="pass">
         <input type="submit" value="Ingresar" class="botoncito py-2">
+            <button type="button" class="btn btn-secondary mt-3" onclick="window.location.href='index.php';">Volver</button>
+
         </form>
         <h1>
             <?php echo $error ? "<strong>$error</strong>" : "" ?>

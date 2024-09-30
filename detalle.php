@@ -27,14 +27,14 @@ $carpetaTipos = "tipos/";
     <!--  WRAPPER  -->
         <div class="col-4 mx-auto d-flex flex-column gap-2 p-2 pokemonCard">
             <div class="pokemonImageContainer">
+                <h2 class="text-center text-white"><?= ucfirst($resultadoConvertido['nombre']); ?></h2>
                 <img src="<?= $carpetaPokemones . $resultadoConvertido["imagen"]; ?>"
                      alt="<?= ucfirst($resultadoConvertido['nombre']); ?>">
             </div>
-            <div class="d-flex flex-column gap-2 px-4 pb-4">
-                <h2 class="text-center text-white"><?= ucfirst($resultadoConvertido['nombre']); ?></h2>
-                <p class="m-0 fs-5 text-white">Tipo</p>
-                <div class="d-flex gap-2 flex-wrap">
-                    <img class="m-0 tipoImage rounded-circle" src="<?= $carpetaTipos . $resultadoConvertido["tipoImagen"] ?>"
+            <div class="d-flex flex-column gap-2 px-4 pb-4 text-center">
+                <p  class="m-0 fs-5 text-white ">Tipo</p>
+                <div class="d-flex gap-2 flex-wrap justify-content-center ">
+                    <img class="m-0 tipoImage rounded-circle " src="<?= $carpetaTipos . $resultadoConvertido["tipoImagen"] ?>"
                          alt="<?= $resultadoConvertido['nombre']; ?>">
                 </div>
                 <p class="m-0 text-white"><?= $resultadoConvertido['descripcion']; ?></p>
