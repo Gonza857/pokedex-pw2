@@ -13,7 +13,7 @@ $logueado = isset($_SESSION["token"]);
         </a>
         <div class="d-flex gap-2 flex-wrap box3">
             <?php if ($logueado): ?>
-                <a href="/pokedex-pw2/cerrar-sesion.php">
+                <a href="/pokedex-pw2/procesos/cerrar-sesion.php">
                     <button>Cerrar sesión</button>
                 </a>
                 <a href="/pokedex-pw2/admin.php">
