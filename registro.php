@@ -31,7 +31,7 @@ unset($_SESSION['error-mensaje']);
                    name="username" required>
 
             <label for="correo">Correo electronico:</label>
-            <input type="text" placeholder="Ingrese su correo electronico" id="correo" name="correo" required>
+            <input type="email" placeholder="Ingrese su correo electronico" id="correo" name="correo" required>
 
             <label for="pass">Contraseña:</label>
             <input type="password" placeholder="Ingrese su contraseña" id="pass" name="pass" required>
